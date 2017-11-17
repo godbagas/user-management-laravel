@@ -13,18 +13,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-<script>$(document).ready(function(c) {
-	$('.close').on('click', function(c){
-		$('.login-form').fadeOut('slow', function(c){
-	  		$('.login-form').remove();
-		});
-	});
-});
-</script>
- <!--SIGN UP-->
+ <!--SIGN IN-->
  <h1>LOGIN</h1>
 <div class="login-form">
-	<div class="close"> </div>
 		<div class="head-info">
 			<label class="lbl-1"> </label>
 			<label class="lbl-2"> </label>
