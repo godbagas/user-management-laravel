@@ -94,10 +94,9 @@
                             </div>
                         </div>
 
-                        <p class="text-center margin-bottom-2">
+                        <!-- <p class="text-center margin-bottom-2">
                             Or Use Social Logins to Register
-                        </p>
-
+                        </p> -->
 
                     {!! Form::close() !!}
 
