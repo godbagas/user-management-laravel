@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'ManagementController@index');
+Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
