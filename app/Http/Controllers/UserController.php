@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -23,12 +25,17 @@ class UserController extends Controller
      */
     public function index()
     {
+
         $user = Auth::user();
 
         if ($user->isAdmin()) {
+
             return view('pages.admin.home');
+
         }
 
         return view('pages.user.home');
+
     }
+
 }

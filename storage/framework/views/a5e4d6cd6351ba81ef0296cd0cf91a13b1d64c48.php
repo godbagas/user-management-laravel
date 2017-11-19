@@ -23,6 +23,13 @@
         <?php echo $__env->yieldContent('template_linked_fonts'); ?>
 
         
+        <?php if(Auth::User() && (Auth::User()->profile) && $theme->link != null && $theme->link != 'null'): ?>
+            <link rel="stylesheet" type="text/css" href="<?php echo e($theme->link); ?>" id="user_theme_link">
+        <?php else: ?>
+            <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/mdl-themes/material.min.css')); ?>" id="user_theme_link">
+        <?php endif; ?>
+
+        
         <link href="<?php echo e(mix('/css/app.css')); ?>" rel="stylesheet">
 
         <?php echo $__env->yieldContent('template_linked_css'); ?>
@@ -45,10 +52,6 @@
                 'csrfToken' => csrf_token(),
             ]); ?>;
         </script>
-
-        <?php if(Auth::User() && (Auth::User()->profile) && $theme->link != null && $theme->link != 'null'): ?>
-            <link rel="stylesheet" type="text/css" href="<?php echo e($theme->link); ?>">
-        <?php endif; ?>
 
         <?php echo $__env->yieldContent('head'); ?>
 

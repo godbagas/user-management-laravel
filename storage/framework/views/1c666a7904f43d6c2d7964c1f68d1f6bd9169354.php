@@ -4,7 +4,7 @@
 
             
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">TM Technology</span>
+                <span class="sr-only"><?php echo trans('titles.toggleNav'); ?></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -12,7 +12,8 @@
 
             
             <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                TM Technology
+                <?php echo trans('titles.app'); ?>
+
             </a>
         </div>
 
@@ -27,6 +28,10 @@
                         <ul class="dropdown-menu" role="menu">
                             <li <?php echo e(Request::is('users', 'users/' . Auth::user()->id, 'users/' . Auth::user()->id . '/edit') ? 'class=active' : null); ?>><?php echo HTML::link(url('/users'), Lang::get('titles.adminUserList')); ?></li>
                             <li <?php echo e(Request::is('users/create') ? 'class=active' : null); ?>><?php echo HTML::link(url('/users/create'), Lang::get('titles.adminNewUser')); ?></li>
+                            <li <?php echo e(Request::is('themes','themes/create') ? 'class=active' : null); ?>><?php echo HTML::link(url('/themes'), Lang::get('titles.adminThemesList')); ?></li>
+                            <li <?php echo e(Request::is('logs') ? 'class=active' : null); ?>><?php echo HTML::link(url('/logs'), Lang::get('titles.adminLogs')); ?></li>
+                            <li <?php echo e(Request::is('php') ? 'class=active' : null); ?>><?php echo HTML::link(url('/php'), Lang::get('titles.adminPHP')); ?></li>
+                            <li <?php echo e(Request::is('routes') ? 'class=active' : null); ?>><?php echo HTML::link(url('/routes'), Lang::get('titles.adminRoutes')); ?></li>
                         </ul>
                     </li>
                 <?php endif; ?>

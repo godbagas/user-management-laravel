@@ -3,530 +3,460 @@
 
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('header'); ?>
+	<small>
+		<?php echo e(trans('profile.editProfileTitle')); ?> | <?php echo e(trans('profile.showProfileTitle',['username' => $user->name])); ?>
+
+	</small>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="<?php echo e(url('/')); ?>">
+			<span itemprop="name">
+				<?php echo e(trans('titles.app')); ?>
+
+			</span>
+		</a>
+		<i class="material-icons">chevron_right</i>
+		<meta itemprop="position" content="1" />
+	</li>
+
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+		<a itemprop="item" href="<?php echo e(url('/profile/'.Auth::user()->name)); ?>">
+			<span itemprop="name">
+				<?php echo e(trans('titles.profile')); ?>
+
+			</span>
+		</a>
+		<i class="material-icons">chevron_right</i>
+		<meta itemprop="position" content="2" />
+	</li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active">
+		<a itemprop="item" href="<?php echo e(url('/profile/'.Auth::user()->name.'/edit')); ?>" class="hidden">
+			<span itemprop="name">
+				<?php echo e(trans('titles.editProfile')); ?>
+
+			</span>
+		</a>
+		<meta itemprop="position" content="3" />
+		<?php echo e(trans('titles.editProfile')); ?>
+
+	</li>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('template-form-status'); ?>
+	<?php echo $__env->make('partials.form-status-ajax', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('template_fastload_css'); ?>
+	.mdl-gen__preview {
+	    position: relative;
+	    height: 350px
+	}
+	.mdl-demo-card .mdl-layout__content {
+	 	margin: 0 1em;
+	}
+	.demo-layout .mdl-layout__header .mdl-layout__drawer-button i {
+	    margin-top: 12px;
+	}
+	.mdl-demo-card .mdl-layout__header .mdl-layout__drawer-button i {
+	    color: #ffffff;
+	}
+
+	body .mdl-card__title {
+		display: block;
+		height: 190px;
+	}
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
+	<?php if(Auth::user()->id == $user->id): ?>
+		<div class="mdl-grid full-grid margin-top-0 padding-0">
+			<div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+				<div class="mdl-card card-wide" style="width:100%;" itemscope itemtype="http://schema.org/Person">
+					<div class="mdl-user-avatar">
+						<div id="avatar_selector_avatar" class="avatar-selecter <?php if($user->profile->avatar_status == 0): ?> active-avatar-selecter <?php endif; ?>">
+							<img src="<?php echo e(asset('images/spiderman_avatar.png')); ?>" alt="<?php echo e($user->name); ?>" class="user-avatar">
+							<h3 class="mdl-card__title-text mdl-title-username mdl-color-text--white">
+								<?php echo e($user->name); ?>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-
-						<div class="btn-group pull-right btn-group-xs">
-
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fa fa-ellipsis-v fa-fw" aria-hidden="true"></i>
-								<span class="sr-only"><?php echo e(trans('profile.editTriggerAlt')); ?></span>
-							</button>
-
-							<ul class="dropdown-menu">
-								<li class="active">
-									<a data-toggle="pill" href=".edit_profile" class="profile-trigger">
-										<?php echo e(trans('profile.editProfileTitle')); ?>
-
-									</a>
-								</li>
-								<li>
-									<a data-toggle="pill" href=".edit_settings" class="settings-trigger">
-										<?php echo e(trans('profile.editAccountTitle')); ?>
-
-									</a>
-								</li>
-								<li>
-									<a data-toggle="pill" href=".edit_account" class="admin-trigger">
-										<?php echo e(trans('profile.editAccountAdminTitle')); ?>
-
-									</a>
-								</li>
-							</ul>
+							</h3>
 						</div>
+						<div id="avatar_selector_userimage" class="avatar-selecter <?php if($user->profile->avatar_status == 1): ?> active-avatar-selecter <?php endif; ?>">
+							<div class="dz-preview"></div>
+							<?php echo Form::open(array('route' => 'avatar.upload', 'method' => 'POST', 'name' => 'avatarDropzone','id' => 'avatarDropzone', 'class' => 'form single-dropzone dropzone single', 'files' => true)); ?>
 
-						<div class="tab-content">
-							<span class="tab-pane active edit_profile">
-								<?php echo e(trans('profile.editProfileTitle')); ?>
+								<?php if($user->profile->avatar): ?>
+									<img id="user_selected_avatar" class="user-avatar" src="<?php echo e($user->profile->avatar); ?>" alt="<?php echo e($user->name); ?>">
+								<?php else: ?>
+									<div class="user-avatar-icon">
+										<i class="material-icons">file_upload</i>
+									</div>
+								<?php endif; ?>
+								<h3 class="mdl-card__title-text mdl-title-username mdl-color-text--white">
+									<?php echo e($user->name); ?>
 
-							</span>
-							<span class="tab-pane edit_settings">
-								<?php echo e(trans('profile.editAccountTitle')); ?>
+								</h3>
+							<?php echo Form::close(); ?>
 
-							</span>
-							<span class="tab-pane edit_account">
-								<?php echo e(trans('profile.editAccountAdminTitle')); ?>
-
-							</span>
 						</div>
+						<span itemprop="image" style="display:none;"><?php echo e(Gravatar::get($user->email)); ?></span>
+					</div>
+					<div id="user_profile_header" class="mdl-card__title mdl-color--primary mdl-color-text--white" <?php if($user->profile->user_profile_bg != NULL): ?> style="background: url('<?php echo e(asset('images/backgrounds/patterns/maia.png')); ?>');" <?php endif; ?>>
+						<?php echo Form::open(array('route' => 'background.upload', 'method' => 'POST', 'name' => 'backgroundDropzone','id' => 'backgroundDropzone', 'class' => 'form single-dropzone dropzone single mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-color-text--white', 'files' => true)); ?>
+
+							<i class="material-icons">wallpaper</i>
+						<?php echo Form::close(); ?>
 
 					</div>
-					<div class="panel-body">
+					<?php echo Form::model($user->profile, ['method' => 'PATCH', 'route' => ['profile.update', $user->name],  'class' => '', 'id' => 'edit_profile_form', 'role' => 'form', 'enctype' => 'multipart/form-data' ]); ?>
 
-						<?php if($user->profile): ?>
+						<meta name="_token" content="<?php echo csrf_token(); ?>" />
+						<div class="mdl-card__supporting-text">
+							<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
 
-							<?php if(Auth::user()->id == $user->id): ?>
+								<div class="mdl-tabs__tab-bar">
+									<a href="#profile-panel" class="mdl-tabs__tab is-active">
+										Profile
+									</a>
+								</div>
 
-								<div class="tab-content">
+								<div class="mdl-tabs__panel is-active" id="profile-panel">
+									<div class="mdl-grid ">
+										<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php echo e($errors->has('name') ? 'is-invalid' :''); ?>">
+												<?php echo Form::text('name', $user->name, array('id' => 'name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z,0-9]*', 'disabled')); ?>
 
-									<div class="tab-pane fade in active edit_profile">
+												<?php echo Form::label('name', trans('auth.name') , array('class' => 'mdl-textfield__label'));; ?>
 
-										<div class="row">
-											<div class="col-sm-12">
-												<div id="avatar_container">
-													<div class="collapseOne panel-collapse collapse <?php if($user->profile->avatar_status == 0): ?> in <?php endif; ?>">
-														<div class="panel-body">
-															<img src="<?php echo e(Gravatar::get($user->email)); ?>" alt="<?php echo e($user->name); ?>" class="user-avatar">
-														</div>
-													</div>
-													<div class="collapseTwo panel-collapse collapse <?php if($user->profile->avatar_status == 1): ?> in <?php endif; ?>">
-														<div class="panel-body">
-
-															<div class="dz-preview"></div>
-
-															<?php echo Form::open(array('route' => 'avatar.upload', 'method' => 'POST', 'name' => 'avatarDropzone','id' => 'avatarDropzone', 'class' => 'form single-dropzone dropzone single', 'files' => true)); ?>
-
-
-																<img id="user_selected_avatar" class="user-avatar" src="<?php if($user->profile->avatar != NULL): ?> <?php echo e($user->profile->avatar); ?> <?php endif; ?>" alt="<?php echo e($user->name); ?>">
-
-															<?php echo Form::close(); ?>
-
-
-														</div>
-													</div>
-												</div>
+												<span class="mdl-textfield__error">Letters and numbers only</span>
 											</div>
 										</div>
 
-										<?php echo Form::model($user->profile, ['method' => 'PATCH', 'route' => ['profile.update', $user->name],  'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data'  ]); ?>
+										<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php echo e($errors->has('email') ? 'is-invalid' :''); ?>">
+												<?php echo Form::email('email', $user->email, array('id' => 'email', 'class' => 'mdl-textfield__input', 'disabled')); ?>
 
+												<?php echo Form::label('email', trans('auth.email') , array('class' => 'mdl-textfield__label'));; ?>
 
-											<?php echo e(csrf_field()); ?>
-
-
-											<div class="row">
-												<div class="col-sm-5 col-sm-offset-4 margin-bottom-1">
-													<div class="row" data-toggle="buttons">
-														<div class="col-xs-6 right-btn-container">
-															<label class="btn btn-primary <?php if($user->profile->avatar_status == 0): ?> active <?php endif; ?> btn-block btn-sm" data-toggle="collapse" data-target=".collapseOne:not(.in), .collapseTwo.in">
-																<input type="radio" name="avatar_status" id="option1" autocomplete="off" value="0" <?php if($user->profile->avatar_status == 0): ?> checked <?php endif; ?>> Use Gravatar
-															</label>
-														</div>
-														<div class="col-xs-6 left-btn-container">
-															<label class="btn btn-primary <?php if($user->profile->avatar_status == 1): ?> active <?php endif; ?> btn-block btn-sm" data-toggle="collapse" data-target=".collapseOne.in, .collapseTwo:not(.in)">
-																<input type="radio" name="avatar_status" id="option2" autocomplete="off" value="1" <?php if($user->profile->avatar_status == 1): ?> checked <?php endif; ?>> Use My Image
-															</label>
-														</div>
-													</div>
-												</div>
+												<span class="mdl-textfield__error">Please Enter a Valid <?php echo e(trans('auth.email')); ?></span>
 											</div>
+										</div>
 
-											<div class="form-group has-feedback <?php echo e($errors->has('location') ? ' has-error ' : ''); ?>">
-												<?php echo Form::label('location', trans('profile.label-location') , array('class' => 'col-sm-4 control-label'));; ?>
+										<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+											<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php echo e($errors->has('first_name') ? 'is-invalid' :''); ?>">
+												<?php echo Form::text('first_name', $user->first_name, array('id' => 'first_name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z]*')); ?>
 
-												<div class="col-sm-6">
-													<?php echo Form::text('location', old('location'), array('id' => 'location', 'class' => 'form-control', 'placeholder' => trans('profile.ph-location'))); ?>
+												<?php echo Form::label('first_name', trans('auth.first_name') , array('class' => 'mdl-textfield__label'));; ?>
 
-													<span class="glyphicon <?php echo e($errors->has('location') ? ' glyphicon-asterisk ' : ' glyphicon-pencil '); ?> form-control-feedback" aria-hidden="true"></span>
-											        <?php if($errors->has('location')): ?>
-											            <span class="help-block">
-											                <strong><?php echo e($errors->first('location')); ?></strong>
-											            </span>
-											        <?php endif; ?>
-												</div>
+												<span class="mdl-textfield__error">Letters only</span>
 											</div>
+										</div>
 
-											<div class="form-group has-feedback <?php echo e($errors->has('bio') ? ' has-error ' : ''); ?>">
-												<?php echo Form::label('bio', trans('profile.label-bio') , array('class' => 'col-sm-4 control-label'));; ?>
+									  	<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+										    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php echo e($errors->has('last_name') ? 'is-invalid' :''); ?>">
+										        <?php echo Form::text('last_name', $user->last_name, array('id' => 'last_name', 'class' => 'mdl-textfield__input', 'pattern' => '[A-Z,a-z]*')); ?>
 
-												<div class="col-sm-6">
-													<?php echo Form::textarea('bio', old('bio'), array('id' => 'bio', 'class' => 'form-control', 'placeholder' => trans('profile.ph-bio'))); ?>
+										        <?php echo Form::label('last_name', trans('auth.last_name') , array('class' => 'mdl-textfield__label'));; ?>
 
-													<span class="glyphicon glyphicon-pencil form-control-feedback" aria-hidden="true"></span>
-											        <?php if($errors->has('bio')): ?>
-											            <span class="help-block">
-											                <strong><?php echo e($errors->first('bio')); ?></strong>
-											            </span>
-											        <?php endif; ?>
-												</div>
-											</div>
-
-											<div class="form-group">
-												<div class="col-sm-6 col-sm-offset-4">
-
-													<?php echo Form::button(
-														'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitButton'),
-														 array(
-															'class' 		 	=> 'btn btn-success disableddd',
-															'type' 			 	=> 'button',
-															'data-target' 		=> '#confirmForm',
-															'data-modalClass' 	=> 'modal-success',
-															'data-toggle' 		=> 'modal',
-															'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
-															'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
-													)); ?>
-
-
-												</div>
-											</div>
-
-										<?php echo Form::close(); ?>
-
-
-									</div>
-
-									<div class="tab-pane fade edit_settings">
-
-										<?php echo Form::model($user, array('action' => array('ProfilesController@updateUserAccount', $user->id), 'method' => 'PUT', 'id' => 'user_basics_form')); ?>
-
-
-											<?php echo csrf_field(); ?>
-
-
-								            <div class="form-group has-feedback row <?php echo e($errors->has('name') ? ' has-error ' : ''); ?>">
-								                <?php echo Form::label('name', 'Username' , array('class' => 'col-md-3 control-label'));; ?>
-
-								                <div class="col-md-9">
-								                  	<div class="input-group">
-								                    	<?php echo Form::text('name', old('name'), array('id' => 'name', 'class' => 'form-control', 'placeholder' => trans('forms.ph-username'))); ?>
-
-								                    	<label class="input-group-addon" for="name"><i class="fa fa-fw fa-user }}" aria-hidden="true"></i></label>
-								                  	</div>
-								                </div>
-								            </div>
-
-								            <div class="form-group has-feedback row <?php echo e($errors->has('email') ? ' has-error ' : ''); ?>">
-								                <?php echo Form::label('email', 'E-mail' , array('class' => 'col-md-3 control-label'));; ?>
-
-								                <div class="col-md-9">
-								                  	<div class="input-group">
-								                    	<?php echo Form::text('email', old('email'), array('id' => 'email', 'class' => 'form-control', 'placeholder' => trans('forms.ph-useremail'))); ?>
-
-								                    	<label class="input-group-addon" for="email"><i class="fa fa-fw fa-envelope " aria-hidden="true"></i></label>
-								                  	</div>
-								                </div>
-								            </div>
-
-								            <div class="form-group has-feedback row <?php echo e($errors->has('first_name') ? ' has-error ' : ''); ?>">
-								                <?php echo Form::label('first_name', trans('forms.create_user_label_firstname'), array('class' => 'col-md-3 control-label'));; ?>
-
-								                <div class="col-md-9">
-								                  	<div class="input-group">
-								                    	<?php echo Form::text('first_name', NULL, array('id' => 'first_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_firstname'))); ?>
-
-								                    	<label class="input-group-addon" for="first_name"><i class="fa fa-fw <?php echo e(trans('forms.create_user_icon_firstname')); ?>" aria-hidden="true"></i></label>
-								                  	</div>
-								                  	<?php if($errors->has('first_name')): ?>
-								                    	<span class="help-block">
-								                        	<strong><?php echo e($errors->first('first_name')); ?></strong>
-								                    	</span>
-								                  	<?php endif; ?>
-								                </div>
-								            </div>
-
-								            <div class="form-group has-feedback row <?php echo e($errors->has('last_name') ? ' has-error ' : ''); ?>">
-								                <?php echo Form::label('last_name', trans('forms.create_user_label_lastname'), array('class' => 'col-md-3 control-label'));; ?>
-
-								                <div class="col-md-9">
-								                  	<div class="input-group margin-bottom-1">
-								                    	<?php echo Form::text('last_name', NULL, array('id' => 'last_name', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_lastname'))); ?>
-
-								                    	<label class="input-group-addon" for="last_name"><i class="fa fa-fw <?php echo e(trans('forms.create_user_icon_lastname')); ?>" aria-hidden="true"></i></label>
-								                  	</div>
-								                  	<?php if($errors->has('last_name')): ?>
-								                    	<span class="help-block">
-								                        	<strong><?php echo e($errors->first('last_name')); ?></strong>
-								                    	</span>
-								                  	<?php endif; ?>
-								                </div>
-								            </div>
-
-										    <div class="form-group row">
-											    <div class="col-md-9 col-md-offset-3">
-													<?php echo Form::button(
-														'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitProfileButton'),
-														 array(
-															'class' 		 	=> 'btn btn-success',
-															'id' 				=> 'account_save_trigger',
-															'disabled'			=> true,
-															'type' 			 	=> 'button',
-															'data-submit'       => trans('profile.submitProfileButton'),
-															'data-target' 		=> '#confirmForm',
-															'data-modalClass' 	=> 'modal-success',
-															'data-toggle' 		=> 'modal',
-															'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
-															'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
-													)); ?>
-
-												</div>
-											</div>
-
-										<?php echo Form::close(); ?>
-
-
-									</div>
-
-									<div class="tab-pane fade edit_account">
-
-										<ul class="nav nav-pills nav-justified margin-bottom-3">
-											<li class="bg-info change-pw active">
-												<a data-toggle="pill" href="#changepw" class="warning-pill-trigger">
-													<?php echo e(trans('profile.changePwPill')); ?>
-
-												</a>
-											</li>
-											<li class="bg-info delete-account">
-												<a data-toggle="pill" href="#deleteAccount" class="danger-pill-trigger">
-													<?php echo e(trans('profile.deleteAccountPill')); ?>
-
-												</a>
-											</li>
-										</ul>
-
-										<div class="tab-content">
-
-										    <div id="changepw" class="tab-pane fade in active">
-
-												<h3 class="margin-bottom-1">
-													<?php echo e(trans('profile.changePwTitle')); ?>
-
-												</h3>
-
-												<?php echo Form::model($user, array('action' => array('ProfilesController@updateUserPassword', $user->id), 'method' => 'PUT', 'autocomplete' => 'new-password')); ?>
-
-
-												    <div class="pw-change-container margin-bottom-2">
-
-														<div class="form-group has-feedback row <?php echo e($errors->has('password') ? ' has-error ' : ''); ?>">
-														  	<?php echo Form::label('password', trans('forms.create_user_label_password'), array('class' => 'col-md-3 control-label'));; ?>
-
-														  	<div class="col-md-9">
-																<?php echo Form::password('password', array('id' => 'password', 'class' => 'form-control ', 'placeholder' => trans('forms.create_user_ph_password'), 'autocomplete' => 'new-password')); ?>
-
-														        <?php if($errors->has('password')): ?>
-														            <span class="help-block">
-														                <strong><?php echo e($errors->first('password')); ?></strong>
-														            </span>
-														        <?php endif; ?>
-														  	</div>
-														</div>
-
-												        <div class="form-group has-feedback row <?php echo e($errors->has('password_confirmation') ? ' has-error ' : ''); ?>">
-												          	<?php echo Form::label('password_confirmation', trans('forms.create_user_label_pw_confirmation'), array('class' => 'col-md-3 control-label'));; ?>
-
-												          	<div class="col-md-9">
-												              	<?php echo Form::password('password_confirmation', array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => trans('forms.create_user_ph_pw_confirmation'))); ?>
-
-																<span id="pw_status"></span>
-																<?php if($errors->has('password_confirmation')): ?>
-																    <span class="help-block">
-																        <strong><?php echo e($errors->first('password_confirmation')); ?></strong>
-																    </span>
-																<?php endif; ?>
-												          	</div>
-												        </div>
-												    </div>
-
-												    <div class="form-group row">
-													    <div class="col-md-9 col-md-offset-3">
-															<?php echo Form::button(
-																'<i class="fa fa-fw fa-save" aria-hidden="true"></i> ' . trans('profile.submitPWButton'),
-																 array(
-																	'class' 		 	=> 'btn btn-warning',
-																	'id' 				=> 'pw_save_trigger',
-																	'disabled'			=> true,
-																	'type' 			 	=> 'button',
-																	'data-submit'       => trans('profile.submitButton'),
-																	'data-target' 		=> '#confirmForm',
-																	'data-modalClass' 	=> 'modal-warning',
-																	'data-toggle' 		=> 'modal',
-																	'data-title' 		=> trans('modals.edit_user__modal_text_confirm_title'),
-																	'data-message' 		=> trans('modals.edit_user__modal_text_confirm_message')
-															)); ?>
-
-														</div>
-													</div>
-												<?php echo Form::close(); ?>
-
-
-	    									</div>
-
-										    <div id="deleteAccount" class="tab-pane fade">
-
-										      	<h3 class="margin-bottom-1 text-center text-danger">
-										      		<?php echo e(trans('profile.deleteAccountTitle')); ?>
-
-										      	</h3>
-										      	<p class="margin-bottom-2 text-center">
-													<i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
-														<strong>Deleting</strong> your account is <u><strong>permanent</strong></u> and <u><strong>cannot</strong></u> be undone.
-													<i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
-										      	</p>
-
-												<hr>
-
-												<div class="row">
-													<div class="col-sm-6 col-sm-offset-3 margin-bottom-3 text-center">
-
-														<?php echo Form::model($user, array('action' => array('ProfilesController@deleteUserAccount', $user->id), 'method' => 'DELETE')); ?>
-
-
-															<div class="btn-group btn-group-vertical margin-bottom-2" data-toggle="buttons">
-																<label class="btn no-shadow" for="checkConfirmDelete" >
-																	<input type="checkbox" name='checkConfirmDelete' id="checkConfirmDelete">
-																	<i class="fa fa-square-o fa-fw fa-2x"></i>
-																	<i class="fa fa-check-square-o fa-fw fa-2x"></i>
-																	<span class="margin-left-2"> Confirm Account Deletion</span>
-																</label>
-															</div>
-
-														    <?php echo Form::button(
-														    	'<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> ' . trans('profile.deleteAccountBtn'),
-																array(
-																	'class' 			=> 'btn btn-block btn-danger',
-																	'id' 				=> 'delete_account_trigger',
-																	'disabled'			=> true,
-																	'type' 				=> 'button',
-																	'data-toggle' 		=> 'modal',
-																	'data-submit'       => trans('profile.deleteAccountBtnConfirm'),
-																	'data-target' 		=> '#confirmForm',
-																	'data-modalClass' 	=> 'modal-danger',
-																	'data-title' 		=> trans('profile.deleteAccountConfirmTitle'),
-																	'data-message' 		=> trans('profile.deleteAccountConfirmMsg')
-																)
-														    ); ?>
-
-
-														<?php echo Form::close(); ?>
-
-
-													</div>
-												</div>
+										        <span class="mdl-textfield__error">Letters only</span>
 										    </div>
+									  	</div>
+
+										<div class="mdl-cell mdl-cell--12-col">
+										    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label <?php echo e($errors->has('bio') ? 'is-invalid' :''); ?>">
+										        <?php echo Form::textarea('bio',  $user->profile->bio, array('id' => 'bio', 'class' => 'mdl-textfield__input')); ?>
+
+										        <?php echo Form::label('bio', trans('profile.label-bio') , array('class' => 'mdl-textfield__label'));; ?>
+
+										    </div>
+										</div>
+									</div>
+									<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+										<div class="mdl-grid ">
+											<div class="mdl-cell mdl-cell--12-col">
+
+												<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 <?php echo e($errors->has('location') ? 'is-invalid' :''); ?>">
+												    <?php echo Form::text('location', $user->profile->location, array('id' => 'location', 'class' => 'mdl-textfield__input' )); ?>
+
+												    <?php echo Form::label('location', trans('profile.label-location') , array('class' => 'mdl-textfield__label'));; ?>
+
+													<span class="mdl-textfield__error">Please Enter a Valid Location</span>
+												</div>
+
+												<?php if($user->profile->location): ?>
+													<div class="card-image mdl-card mdl-shadow--2dp">
+														<div id="map-canvas"></div>
+														<div class="mdl-card__actions mdl-color--primary mdl-color-text--white">
+															<p class="mdl-typography--font-light">
+																LON: <span id="longitude"></span> / LAT: <span id="latitude"></span>
+															</p>
+														</div>
+													</div>
+												<?php endif; ?>
+
+											</div>
 										</div>
 									</div>
 								</div>
 
-							<?php else: ?>
+								<div class="mdl-tabs__panel" id="theme-panel">
+									<div id="color_select_panel">
+									    <div class="mdl-gen mdl-cell mdl-cell--12-col">
+									        <div class="mdl-grid">
+												<div class="mdl-gen__panel mdl-gen__panel--left mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col">
+													<div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
+														<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-select mdl-select__fullwidth <?php echo e($errors->has('theme_id') ? 'is-invalid' :''); ?>">
+															<select class="mdl-selectfield__select mdl-textfield__input" name="theme_id" id="theme_id">
+																<?php if($themes->count()): ?>
+																	<?php $__currentLoopData = $themes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $theme): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+																	  <option value="<?php echo e($theme->id); ?>"<?php echo e($currentTheme->id == $theme->id ? 'selected="selected"' : ''); ?> data-link="<?php echo e($theme->link); ?>" ><?php echo e($theme->name); ?></option>
+																	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+																<?php endif; ?>
+															</select>
+													        <label for="theme_id">
+													            <i class="mdl-icon-toggle__label material-icons">arrow_drop_down</i>
+													        </label>
+													        <?php echo Form::label('theme_id', trans('profile.label-theme'), array('class' => 'mdl-textfield__label mdl-selectfield__label mdl-color-text--primary'));; ?>
 
-								<p><?php echo e(trans('profile.notYourProfile')); ?></p>
+															<?php if($errors->has('theme_id')): ?>
+															    <span class="mdl-textfield__error"><?php echo e($errors->first('theme')); ?></span>
+															<?php endif; ?>
+													    </div>
+													</div>
+													<div class="mdl-gen__cdn mdl-cell mdl-cell--12-col sr-only">
+														<div class="code-with-text" id="cdn-code">
+															<pre class="demo-code language-markup codepen-button-disabled">
+																<code class="language-markup mdl-gen__cdn-link" data-language="markup" id="color_selected">
+																	material.$primary-$accent.min.css
+																</code>
+															</pre>
+														</div>
+													</div>
+													<div id="wheel">
+													  	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+													        <defs>
+													          	<filter id="drop-shadow">
+																	<feGaussianBlur in="SourceAlpha" stdDeviation="3.2" />
+																	<feOffset dx="0" dy="0" result="offsetblur" />
+																	<feFlood flood-color="rgba(0,0,0,1)" />
+																	<feComposite in2="offsetblur" operator="in" />
+																	<feMerge>
+																	  	<feMergeNode />
+																	  	<feMergeNode in="SourceGraphic" />
+																	</feMerge>
+													          	</filter>
+													        </defs>
+													    	<g class="wheel--maing"></g>
+													  	</svg>
+													  	<div class="mdl-gen-download">
+													    	<a href="#" id="download" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--fab">
+													    		<i class="material-icons">
+													    			format_color_fill
+													    		</i>
+													    	</a>
+													  	</div>
+													</div>
+												</div>
 
-							<?php endif; ?>
-						<?php else: ?>
+									            <div class="mdl-gen__panel--right mdl-gen__panel mdl-cell mdl-cell--6-col-desktop mdl-cell--8-col">
+													<div class="mdl-gen__desc docs-text-styling">
+														<strong>
+															Custom CSS theme builder
+														</strong>
+														<p>
+															Click on the color wheel to choose a primary (1) and accent (2) color to preview the theme below.
+															When you’ve selected a color combination you like, simply click save.
+														</p>
+													</div>
+													<div class="mdl-demo-card mdl-card mdl-shadow--2dp">
+				                						<div class="mdl-gen__preview">
+				                  							<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+																<header class="mdl-layout__header">
+																	<div class="mdl-layout__header-row">
+																		<span class="mdl-layout-title">Theme Preview</span>
+																	</div>
+																</header>
+																<div class="mdl-layout__drawer">
+																	<span class="mdl-layout-title">Theme Preview</span>
+																	<nav class="mdl-navigation">
+																		<a class="mdl-navigation__link" href="#">Some</a>
+																		<a class="mdl-navigation__link" href="#">Links</a>
+																		<a class="mdl-navigation__link" href="#">Here</a>
+																	</nav>
+																</div>
+				                    							<div class="mdl-layout__content">
+																	<h4 class="margin-bottom-0">
+																		Try it out
+																	</h4>
+																	<p>
+																		Lorem ipsum dolor sit amet.
+																	</p>
+																	<p>
+																		<a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+																		  Accent
+																		</a>
+																	  	<a href="#" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">
+																	  		Primary
+																		</a>
+																	</p>
+																	<p>
+																		<a href="#" class="mdl-button mdl-js-button mdl-button--primary">
+																		  Primary
+																		</a>
+																		<a href="#" class="mdl-button mdl-js-button mdl-button--accent">
+																		  Accent
+																		</a>
+																	</p>
+																	<p>
+																		<a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect">
+																			<i class="material-icons">email</i>
+																		</a>
+																		<a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+																			<i class="material-icons">add</i>
+																		</a>
+																		<a href="#" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+																			<i class="material-icons">person</i>
+																		</a>
+																	</p>
+				                    							</div>
+				                  							</div>
+				                						</div>
+													</div>
+				              					</div>
+				            				</div>
+				          				</div>
+									</div>
+			  					</div>
 
-							<p><?php echo e(trans('profile.noProfileYet')); ?></p>
+							</div>
+						</div>
 
-						<?php endif; ?>
+						<div class="mdl-card__actions padding-top-0 ">
+							<div class="mdl-grid padding-top-0">
+								<div class="mdl-cell mdl-cell--12-col padding-top-0 margin-top-0">
+									<span class="save-actions start-hidden">
+										<?php echo Form::button(trans('profile.submitChangesButton'), array('class' => 'dialog-button-save mdl-button mdl-js-button mdl-js-ripple-effect margin-top-1 margin-top-0-desktop')); ?>
 
-					</div>
+									</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="mdl-card__menu">
+							<span class="save-actions start-hidden mdl-color-text--white">
+								<?php echo Form::button('<i class="material-icons">save</i>', array('class' => 'dialog-icon-save mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect', 'title' => 'view profile')); ?>
+
+							</span>
+							<a id="avatar_selection_menu" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
+							  	<i class="material-icons">more_vert</i>
+							</a>
+							<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="avatar_selection_menu">
+								<li class="mdl-menu__item">
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect <?php if($user->profile->avatar_status == 0): ?> active <?php endif; ?>" for="use_gravatar">
+									  	<input type="radio" id="use_gravatar" class="mdl-radio__button" name="avatar_status" value="0" <?php if($user->profile->avatar_status == 0): ?> checked <?php endif; ?>>
+									  	<span class="mdl-radio__label">
+									  		Use Gravatar
+									  	</span>
+									</label>
+								</li>
+								<li class="mdl-menu__item">
+									<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect <?php if($user->profile->avatar_status == 1): ?> active <?php endif; ?>" for="use_image">
+									  	<input type="radio" id="use_image" class="mdl-radio__button" name="avatar_status" value="1" <?php if($user->profile->avatar_status == 1): ?> checked <?php endif; ?>>
+									  	<span class="mdl-radio__label">
+									  		Use My Image
+									  	</span>
+									</label>
+								</li>
+							</ul>
+							<a href="/profile/<?php echo e(Auth::user()->name); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="view profile">
+								<i class="material-icons">person_outline</i>
+							</a>
+						</div>
+
+						<?php echo $__env->make('dialogs.dialog-save', ['isAjax' => true], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+					<?php echo Form::close(); ?>
+
+
 				</div>
+
 			</div>
 		</div>
-	</div>
 
-	<?php echo $__env->make('modals.modal-form', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php else: ?>
+		<p><?php echo e(trans('profile.notYourProfile')); ?></p>
+	<?php endif; ?>
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer_scripts'); ?>
 
-	<?php echo $__env->make('scripts.form-modal-script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('scripts.mdl-required-input-fix', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 	<?php echo $__env->make('scripts.gmaps-address-lookup-api3', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-	<?php echo $__env->make('scripts.user-avatar-dz', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('scripts.google-maps-geocode-and-map', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('scripts.mdl-save-ajax', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 	<script type="text/javascript">
 
-		$('.dropdown-menu li a').click(function() {
-			$('.dropdown-menu li').removeClass('active');
+		// Profile theme color wheel
+		$('#theme_id').change(function(){
+			var selectedThemeMenu = $(this).find('option:selected').data('link');
+			var themeColors = getThemeColors(selectedThemeMenu);
+			for (i = 0; i < 5; i++) {
+			    $('.selected--' + i).removeClass('selected selected--' + i);
+			}
+			init(themeColors.color1, themeColors.color2);
 		});
+		initColorWheel();
 
-		$('.profile-trigger').click(function() {
-			$('.panel').alterClass('panel-*', 'panel-default');
-		});
-
-		$('.settings-trigger').click(function() {
-			$('.panel').alterClass('panel-*', 'panel-info');
-		});
-
-		$('.admin-trigger').click(function() {
-			$('.panel').alterClass('panel-*', 'panel-warning');
-			$('.edit_account .nav-pills li, .edit_account .tab-pane').removeClass('active');
-			$('#changepw')
-				.addClass('active')
-				.addClass('in');
-			$('.change-pw').addClass('active');
-		});
-
-		$('.warning-pill-trigger').click(function() {
-			$('.panel').alterClass('panel-*', 'panel-warning');
-		});
-
-		$('.danger-pill-trigger').click(function() {
-			$('.panel').alterClass('panel-*', 'panel-danger');
-		});
-
-		$('#user_basics_form').on('keyup change', 'input, select, textarea', function(){
-		    $('#account_save_trigger').attr('disabled', false);
-		});
-
-		$('#checkConfirmDelete').change(function() {
-		    var submitDelete = $('#delete_account_trigger');
-		    var self = $(this);
-
-		    if (self.is(':checked')) {
-		        submitDelete.attr('disabled', false);
+		// Switch Avatar/Gravatar
+		var a = elId('avatar_selector_avatar');
+		var b = elId('avatar_selector_userimage');
+		var x = elId('use_image');
+		var y = elId('use_gravatar');
+		var da = elId('drawer_avatar');
+		x.onclick = function() {
+		    a.style.display = "none";
+		    b.style.display = "block";
+		    var avatarLink = "<?php echo e($user->profile->avatar); ?>";
+		    if(avatarLink != "") {
+		    	da.src = "<?php echo e($user->profile->avatar); ?>?" + new Date().getTime() + (Math.floor(Math.random() * 1000) * Math.floor(Math.random() * 1000));
 		    }
-		    else {
-		    	submitDelete.attr('disabled', true);
-		    }
-		});
-
-		$("#password_confirmation").keyup(function() {
-			checkPasswordMatch();
-		});
-
-		$("#password, #password_confirmation").keyup(function() {
-			enableSubmitPWCheck();
-		});
-
-		$('#password, #password_confirmation').hidePassword(true);
-
-		$('#password').password({
-			shortPass: 'The password is too short',
-			badPass: 'Weak - Try combining letters & numbers',
-			goodPass: 'Medium - Try using special charecters',
-			strongPass: 'Strong password',
-			containsUsername: 'The password contains the username',
-			enterPass: false,
-			showPercent: false,
-			showText: true,
-			animate: true,
-			animateSpeed: 50,
-			username: false, // select the username field (selector or jQuery instance) for better password checks
-			usernamePartialMatch: true,
-			minimumLength: 6
-		});
-
-		function checkPasswordMatch() {
-		    var password = $("#password").val();
-		    var confirmPassword = $("#password_confirmation").val();
-		    if (password != confirmPassword) {
-		        $("#pw_status").html("Passwords do not match!");
-		    }
-		    else {
-		        $("#pw_status").html("Passwords match.");
-		    }
+		};
+		y.onclick = function() {
+		    a.style.display = "block";
+		    b.style.display = "none";
+		    da.src = "<?php echo e(Gravatar::get($user->email)); ?>";
+		};
+		function elId(name) {
+			return document.getElementById(name);
 		}
 
-		function enableSubmitPWCheck() {
-		    var password = $("#password").val();
-		    var confirmPassword = $("#password_confirmation").val();
-		    var submitChange = $('#pw_save_trigger');
-		    if (password != confirmPassword) {
-		       	submitChange.attr('disabled', true);
-		    }
-		    else {
-		        submitChange.attr('disabled', false);
-		    }
-		}
+		// User avatar and profile background dropzone callback actions
+		$(document).ready(function(){
+			var userBgDropzone = Dropzone.forElement("#backgroundDropzone");
+			userBgDropzone.on('success', function() {
+				var userBgStamped = "<?php echo e($user->profile->user_profile_bg); ?>?" + new Date().getTime() + (Math.floor(Math.random() * 1000) * Math.floor(Math.random() * 1000));
+				var header = $("#user_profile_header");
+				header.css("background", ""); //It was not always clearing for PNG images
+				header.css("background", "url(" + userBgStamped + ") center/cover");
 
+			});
+			var userAvatarDropzone = Dropzone.forElement("#avatarDropzone");
+			userAvatarDropzone.on('success', function() {
+				var userAvatarStamped = "<?php echo e($user->profile->avatar); ?>?" + new Date().getTime() + (Math.floor(Math.random() * 1000) * Math.floor(Math.random() * 1000));
+				var profileAvatar = $("#user_selected_avatar");
+				var drawerAvatar = $("#drawer_avatar");
+				profileAvatar.attr("src", userAvatarStamped);
+				drawerAvatar.attr("src", userAvatarStamped);
+			});
+		});
 	</script>
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

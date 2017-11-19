@@ -13,10 +13,8 @@
         <!-- Styles -->
         <style>
             html, body {
-              background-color: #ffffff;
-                /*background-color: #D14840;*/
+                background-color: #fff;
                 color: #636b6f;
-                /*color: #ffffff;*/
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
@@ -48,11 +46,11 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 4em;
             }
 
             .title small {
-                font-size: 60px;
+                font-size: .8em;
             }
 
             .links > a {
@@ -85,7 +83,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    TM Technology<br /><small>User Management</small>
+                    Laravel<br /><small>MDL 2.0</small>
+                </div>
+
+                <div class="links">
+                    <a href="https://laravel.com/docs">Documentation</a>
+                    <a href="https://laracasts.com">Laracasts</a>
+                    <a href="https://laravel-news.com">News</a>
+                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://getmdl.io/">Material Design Lite</a>
                 </div>
             </div>
         </div>

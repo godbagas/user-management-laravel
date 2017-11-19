@@ -3,155 +3,185 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('template_linked_css'); ?>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-    <style type="text/css" media="screen">
-        .users-table {
-            border: 0;
-        }
-        .users-table tr td:first-child {
-            padding-left: 15px;
-        }
-        .users-table tr td:last-child {
-            padding-right: 15px;
-        }
-        .users-table.table-responsive,
-        .users-table.table-responsive table {
-            margin-bottom: 0;
-        }
+<?php $__env->stopSection(); ?>
 
-    </style>
+<?php $__env->startSection('header'); ?>
+    Showing All Users
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a itemprop="item" href="<?php echo e(url('/')); ?>">
+            <span itemprop="name">
+                <?php echo e(trans('titles.app')); ?>
+
+            </span>
+        </a>
+        <i class="material-icons">chevron_right</i>
+        <meta itemprop="position" content="1" />
+    </li>
+    <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <a itemprop="item" href="/users" disabled>
+            <span itemprop="name">
+                Users List
+            </span>
+        </a>
+        <meta itemprop="position" content="2" />
+    </li>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
 
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
+<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet mdl-cell--12-col-desktop margin-top-0">
+    <div class="mdl-card__title diagmonds-bg mdl-color-text--white">
+        <h2 class="mdl-card__title-text logo-style">
+            <?php if($totalUsers === 1): ?>
+                <?php echo e($totalUsers); ?> User total
+            <?php elseif($totalUsers > 1): ?>
+                <?php echo e($totalUsers); ?> Total Users
+            <?php else: ?>
+                No Users :(
+            <?php endif; ?>
+        </h2>
 
-                            Showing All Users
-
-                            <div class="btn-group pull-right btn-group-xs">
-
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-ellipsis-v fa-fw" aria-hidden="true"></i>
-                                    <span class="sr-only">
-                                        Show Users Management Menu
+    </div>
+    <div class="mdl-card__supporting-text mdl-color-text--grey-600 padding-0 context">
+        <div class="table-responsive material-table">
+            <table id="user_table" class="mdl-data-table mdl-js-data-table data-table" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">ID</th>
+                    <th class="mdl-data-table__cell--non-numeric">Username</th>
+                    <th class="mdl-data-table__cell--non-numeric">Email</th>
+                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">First Name</th>
+                    <th class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only">Last Name</th>
+                    <th class="mdl-data-table__cell--non-numeric">Role</th>
+                    <th class="mdl-data-table__cell--non-numeric no-sort no-search">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <tr>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="<?php echo e(URL::to('users/' . $user->id)); ?>"><?php echo e($user->id); ?></a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="<?php echo e(URL::to('users/' . $user->id)); ?>"><?php echo e($user->name); ?> </a></td>
+                            <td class="mdl-data-table__cell--non-numeric"><a href="<?php echo e(URL::to('users/' . $user->id)); ?>"><?php echo e($user->email); ?> </a></td>
+                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="<?php echo e(URL::to('users/' . $user->id)); ?>"><?php echo e($user->first_name); ?> </a></td>
+                            <td class="mdl-data-table__cell--non-numeric mdl-layout--large-screen-only"><a href="<?php echo e(URL::to('users/' . $user->id)); ?>"><?php echo e($user->last_name); ?> </a></td>
+                            <td class="mdl-data-table__cell--non-numeric">
+                                <?php $__currentLoopData = $user->roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user_role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($user_role->name == 'User'): ?>
+                                        <?php 
+                                            $levelIcon        = 'person';
+                                            $levelName        = 'User';
+                                            $levelBgClass     = 'mdl-color--blue-200';
+                                            $leveIconlBgClass = 'mdl-color--blue-500';
+                                         ?>
+                                    <?php elseif($user_role->name == 'Admin'): ?>
+                                        <?php 
+                                            $levelIcon        = 'supervisor_account';
+                                            $levelName        = 'Admin';
+                                            $levelBgClass     = 'mdl-color--red-200';
+                                            $leveIconlBgClass = 'mdl-color--red-500';
+                                         ?>
+                                    <?php elseif($user_role->name == 'Unverified'): ?>
+                                        <?php 
+                                            $levelIcon        = 'person_outline';
+                                            $levelName        = 'Unverified';
+                                            $levelBgClass     = 'mdl-color--orange-200';
+                                            $leveIconlBgClass = 'mdl-color--orange-500';
+                                         ?>
+                                    <?php else: ?>
+                                        <?php 
+                                            $levelIcon        = 'person_outline';
+                                            $levelName        = 'Unverified';
+                                            $levelBgClass     = 'mdl-color--orange-200';
+                                            $leveIconlBgClass = 'mdl-color--orange-500';
+                                         ?>
+                                    <?php endif; ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <a href="<?php echo e(URL::to('users/' . $user->id)); ?>">
+                                    <span class="mdl-chip mdl-chip--contact <?php echo e($levelBgClass); ?> mdl-color-text--white md-chip">
+                                        <span class="mdl-chip__contact <?php echo e($leveIconlBgClass); ?> mdl-color-text--white">
+                                            <i class="material-icons"><?php echo e($levelIcon); ?></i>
+                                        </span>
+                                        <span class="mdl-chip__text"><?php echo e($levelName); ?></span>
                                     </span>
-                                </button>
+                                </a>
+                            </td>
+                            <td class="mdl-data-table__cell--non-numeric">
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="/users/create">
-                                            <i class="fa fa-fw fa-user-plus" aria-hidden="true"></i>
-                                            Create New User
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/users/deleted">
-                                            <i class="fa fa-fw fa-group" aria-hidden="true"></i>
-                                            Show Deleted User
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="panel-body">
+                                
+                                <a href="/profile/<?php echo e($user->name); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Profile">
+                                    <i class="material-icons mdl-color-text--green">person</i>
+                                </a>
 
-                        <div class="table-responsive users-table">
-                            <table class="table table-striped table-condensed data-table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Username</th>
-                                        <th class="hidden-xs">Email</th>
-                                        <th class="hidden-xs">First Name</th>
-                                        <th class="hidden-xs">Last Name</th>
-                                        <th>Role</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">Created</th>
-                                        <th class="hidden-sm hidden-xs hidden-md">Updated</th>
-                                        <th>Actions</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr>
-                                            <td><?php echo e($user->id); ?></td>
-                                            <td><?php echo e($user->name); ?></td>
-                                            <td class="hidden-xs"><a href="mailto:<?php echo e($user->email); ?>" title="email <?php echo e($user->email); ?>"><?php echo e($user->email); ?></a></td>
-                                            <td class="hidden-xs"><?php echo e($user->first_name); ?></td>
-                                            <td class="hidden-xs"><?php echo e($user->last_name); ?></td>
-                                            <td>
-                                                <?php $__currentLoopData = $user->roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user_role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                                    <?php if($user_role->name == 'User'): ?>
-                                                        <?php $labelClass = 'primary' ?>
+                                
+                                <a href="<?php echo e(URL::to('users/' . $user->id)); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" title="View User Account">
+                                    <i class="material-icons mdl-color-text--blue">account_circle</i>
+                                </a>
 
-                                                    <?php elseif($user_role->name == 'Admin'): ?>
-                                                        <?php $labelClass = 'warning' ?>
+                                
+                                <a href="<?php echo e(URL::to('users/' . $user->id . '/edit')); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                    <i class="material-icons mdl-color-text--orange">edit</i>
+                                </a>
 
-                                                    <?php elseif($user_role->name == 'Unverified'): ?>
-                                                        <?php $labelClass = 'danger' ?>
+                                
+                                <?php echo Form::open(array('url' => 'users/' . $user->id, 'class' => 'inline-block', 'id' => 'delete_'.$user->id)); ?>
 
-                                                    <?php else: ?>
-                                                        <?php $labelClass = 'default' ?>
+                                    <?php echo Form::hidden('_method', 'DELETE'); ?>
 
-                                                    <?php endif; ?>
+                                    <a href="#" class="dialog-button dialiog-trigger-delete dialiog-trigger<?php echo e($user->id); ?> mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" data-userid="<?php echo e($user->id); ?>">
+                                        <i class="material-icons mdl-color-text--red">delete</i>
+                                    </a>
+                                <?php echo Form::close(); ?>
 
-                                                    <span class="label label-<?php echo e($labelClass); ?>"><?php echo e($user_role->name); ?></span>
-
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </td>
-                                            <td class="hidden-sm hidden-xs hidden-md"><?php echo e($user->created_at); ?></td>
-                                            <td class="hidden-sm hidden-xs hidden-md"><?php echo e($user->updated_at); ?></td>
-                                            <td>
-                                                <?php echo Form::open(array('url' => 'users/' . $user->id, 'class' => '', 'data-toggle' => 'tooltip', 'title' => 'Delete')); ?>
-
-                                                    <?php echo Form::hidden('_method', 'DELETE'); ?>
-
-                                                    <?php echo Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Delete</span><span class="hidden-xs hidden-sm hidden-md"> User</span>', array('class' => 'btn btn-danger btn-sm','type' => 'button', 'style' =>'width: 100%;' ,'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user ?')); ?>
-
-                                                <?php echo Form::close(); ?>
-
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-success btn-block" href="<?php echo e(URL::to('users/' . $user->id)); ?>" data-toggle="tooltip" title="Show">
-                                                    <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Show</span><span class="hidden-xs hidden-sm hidden-md"> User</span>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-info btn-block" href="<?php echo e(URL::to('users/' . $user->id . '/edit')); ?>" data-toggle="tooltip" title="Edit">
-                                                    <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Edit</span><span class="hidden-xs hidden-sm hidden-md"> User</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+              </tbody>
+            </table>
         </div>
     </div>
+    <div class="mdl-card__menu" style="top: -4px;">
 
-    <?php echo $__env->make('modals.modal-delete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <?php echo $__env->make('partials.mdl-search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+        <a href="<?php echo e(url('/users/create')); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Add New User">
+            <i class="material-icons">person_add</i>
+            <span class="sr-only">Add New User</span>
+        </a>
+
+        <a href="<?php echo e(URL::to('/users/deleted')); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect mdl-color-text--white" title="Show Deleted Users">
+            <i class="material-icons" aria-hidden="true">delete_sweep</i>
+            <span class="sr-only">Show Deleted Users</span>
+        </a>
+
+    </div>
+</div>
+
+<?php echo $__env->make('dialogs.dialog-delete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer_scripts'); ?>
-
-    <?php if(count($users) > 10): ?>
-        <?php echo $__env->make('scripts.datatables', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    <?php endif; ?>
-    <?php echo $__env->make('scripts.delete-modal-script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    <?php echo $__env->make('scripts.save-modal-script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-    
+    <?php echo $__env->make('scripts.highlighter-script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('scripts.mdl-datatables', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <script type="text/javascript">
+        <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $a_user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            mdl_dialog('.dialiog-trigger<?php echo e($a_user->id); ?>','','#dialog_delete');
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        var userid;
+        $('.dialiog-trigger-delete').click(function(event) {
+            event.preventDefault();
+            userid = $(this).attr('data-userid');
+        });
+        $('#confirm').click(function(event) {
+            $('form#delete_'+userid).submit();
+        });
+    </script>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

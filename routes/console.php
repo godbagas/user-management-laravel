@@ -1,5 +1,6 @@
 <?php
 
+use App\Console\Commands\DeleteExpiredActivations;
 use Illuminate\Foundation\Inspiring;
 
 /*

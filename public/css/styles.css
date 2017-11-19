@@ -33,6 +33,9 @@ body{
 	-o-background-size:cover;
 	min-height:1050px;
 }
+diagmonds-bg {
+	background: url(../images/backgrounds/patterns/diagmonds.png) no-repeat 0px 0px;}
+}
 .wrap{
 	margin: 0 auto;
 	width: 80%;

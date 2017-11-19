@@ -11,6 +11,25 @@ const { mix } = require('laravel-mix');
  |
  */
 
+var nodeDir = 'node_modules/';
+var mdlCustomDir = 'resources/assets/js/laravel-mdl/';
+var mdlNodeDir = nodeDir + 'material-design-lite/';
+
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .version();
+	.scripts([
+		mdlNodeDir + 'material.js',
+		mdlCustomDir + 'alerts.js',
+		mdlCustomDir + 'dialogs.js',
+		mdlCustomDir + 'spinners.js',
+		mdlCustomDir + 'alerts.js',
+		mdlCustomDir + 'mdl-selectfield.js',
+		mdlCustomDir + 'jQuery.simpleWeather.js',
+		mdlCustomDir + 'jQuery.animate-bg.js',
+		nodeDir + 'mark.js/dist/jquery.mark.js',
+		nodeDir + 'prismjs/prism.js',
+		mdlCustomDir + 'mdl-colorwheel.js'
+	], 'public/js/mdl.js')
+	.copy(mdlNodeDir + '/dist/**.css', 'public/css/mdl-themes/', true)
+	.copy('node_modules/weather-icons/font/**', 'public/fonts/weather-icons/', true)
+	.sass('resources/assets/sass/app.scss', 'public/css')
+	.version();

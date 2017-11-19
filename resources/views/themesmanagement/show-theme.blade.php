@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('template_title')
-  	{{ trans('themes.showHeadTitle') . ' ' . $theme->name }}
+  	{{ trans('themes.showHeadTitle') . ' ' . $mdlTheme->name }}
 @endsection
 
 @section('template_fastload_css')
@@ -31,7 +31,7 @@
         'name'  => trans('themes.statusDisabled'),
         'class' => 'danger'
     ];
-    if($theme->status == 1) {
+    if($mdlTheme->status == 1) {
         $themeStatus = [
             'name'  => trans('themes.statusEnabled'),
             'class' => 'success'
@@ -55,7 +55,7 @@
 				<div class="panel-body">
 					<div class="well well-sm">
 					    <h1 class="text-center">
-					        {{ $theme->name }}
+					        {{ $mdlTheme->name }}
 					    </h1>
 
 					    <h4 class="text-center margin-bottom-2">
@@ -71,18 +71,18 @@
 							    </span>
 							</li>
 
-							<li class="list-group-item"><strong>Id</strong> <span>{{ $theme->id }}</span></li>
+							<li class="list-group-item"><strong>Id</strong> <span>{{ $mdlTheme->id }}</span></li>
 
-							@if($theme->link != null)
-								<li class="list-group-item"><strong>{{ trans('themes.showLink') }}</strong> <span> <a href="{{$theme->link}}" target="_blank" data-toggle="tooltip" title="Go to Link">{{$theme->link}}</a></span></li>
+							@if($mdlTheme->link != null)
+								<li class="list-group-item"><strong>{{ trans('themes.showLink') }}</strong> <span> <a href="{{$mdlTheme->link}}" target="_blank" data-toggle="tooltip" title="Go to Link">{{$mdlTheme->link}}</a></span></li>
 							@endif
 
-							@if($theme->notes != null)
-								<li class="list-group-item"><strong>{{ trans('themes.showNotes') }}</strong> <span>{{ $theme->notes }}</span></li>
+							@if($mdlTheme->notes != null)
+								<li class="list-group-item"><strong>{{ trans('themes.showNotes') }}</strong> <span>{{ $mdlTheme->notes }}</span></li>
 							@endif
 
-							<li class="list-group-item"><strong>{{ trans('themes.showAdded') }}</strong> <span>{{ $theme->created_at }}</span></li>
-							<li class="list-group-item"><strong>{{ trans('themes.showUpdated') }}</strong> <span>{{ $theme->updated_at }}</span></li>
+							<li class="list-group-item"><strong>{{ trans('themes.showAdded') }}</strong> <span>{{ $mdlTheme->created_at }}</span></li>
+							<li class="list-group-item"><strong>{{ trans('themes.showUpdated') }}</strong> <span>{{ $mdlTheme->updated_at }}</span></li>
 						</ul>
 
 						@if(count($themeUsers) > 0)
@@ -101,11 +101,11 @@
 				<div class="panel-footer">
 					<div class="row">
 						<div class="col-xs-6">
-							<a href="/themes/{{$theme->id}}/edit" class="btn btn-small btn-info btn-block">
+							<a href="/themes/{{$mdlTheme->id}}/edit" class="btn btn-small btn-info btn-block">
 								<i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit<span class="hidden-xs hidden-sm"> this</span><span class="hidden-xs"> Theme</span>
 							</a>
 						</div>
-						{!! Form::open(array('url' => 'themes/' . $theme->id, 'class' => 'col-xs-6')) !!}
+						{!! Form::open(array('url' => 'themes/' . $mdlTheme->id, 'class' => 'col-xs-6')) !!}
 							{!! Form::hidden('_method', 'DELETE') !!}
 							{!! Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> Delete<span class="hidden-xs hidden-sm"> this</span><span class="hidden-xs"> Theme</span>', array('class' => 'btn btn-danger btn-block btn-flat','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => trans('themes.confirmDeleteHdr'), 'data-message' => trans('themes.confirmDelete'))) !!}
 						{!! Form::close() !!}

@@ -14,9 +14,37 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'layouts.app', 'App\Http\ViewComposers\ThemeComposer'
+
+        View::composer([
+                '*'
+            ],
+            'App\Http\ViewComposers\ThemeComposer'
         );
+
+        View::composer([
+                '*'
+            ],
+            'App\Http\ViewComposers\UsersComposer'
+        );
+
+        View::composer([
+                '*'
+            ],
+            'App\Http\Controllers\TasksController@getAllTasks'
+        );
+
+        View::composer([
+                '*'
+            ],
+            'App\Http\Controllers\TasksController@getCompleteTasks'
+        );
+
+        View::composer([
+                '*'
+            ],
+            'App\Http\Controllers\TasksController@getIncompleteTasks'
+        );
+
     }
 
     /**

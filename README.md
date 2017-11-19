@@ -1,189 +1,98 @@
-#### Laravel-Auth is a Complete Build of Laravel 5.5 with Email Registration Verification, Social Authentication, User Roles and Permissions, User Profiles, and Admin restricted user management system.
-[![Build Status](https://travis-ci.org/jeremykenedy/laravel-auth.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-auth)
-[![StyleCI](https://styleci.io/repos/44714043/shield?branch=master)](https://styleci.io/repos/44714043)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-auth/build-status/master)
-[![License](http://jeremykenedy.com/license-mit.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-auth/LICENSE)
+### Laravel Material Admin is a Complete Build of Laravel 5.4 and Google Material Design Lite 1.3 with FULL Email and Social Authentication
 
-#### READY FOR USE!
-- [About](#about)
-- [Features](#features)
-- [Installation Instructions](#installation-instructions)
-    - [Rebuild Front End Assets with Mix (optional)](#rebuild-front-end-assets-with-mix)
-    - [Optionally Build Cache](#optionally-build-cache)
-- [Seeds](#seeds)
-- [Routes](#routes)
-  - [Authentication Routes](#authentication-routes)
-  - [Profile Routes](#profile-routes)
-  - [Admin Routes](#admin-routes)
-- [Socialite](#socialite)
-  - [Get Socialite Login API Keys](#get-socialite-login-api-keys)
-  - [Add More Socialite Logins](#add-more-socialite-logins)
-- [Other API keys](#other-api-keys)
-- [Environment File](#environment-file)
-- [Updates](#updates)
-- [Screenshots](#screenshots)
-- [File Tree](#file-tree)
-- [Laravel Auth License](#laravel-auth-license)
+[![License](http://jeremykenedy.com/license-mit.svg)](https://raw.githubusercontent.com/jeremykenedy/laravel-material-design/master/LICENSE) [![License](https://travis-ci.org/jeremykenedy/laravel-material-design.svg?branch=master)](https://travis-ci.org/jeremykenedy/laravel-material-design)
 
-### About
-Laravel 5.5 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 5.4 with user authentication, registration with email confirmation, social media authentication, password recovery, and captcha protection. This makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Uses laravel ORM modeling and has CRUD (Create Read Update Delete) functionality for all tasks. Quick setup, can be done in 5 minutes. It will take longer to obtain your Facebook, Twitter, and Google Plus API Keys than it will to set this up.
 
-### Features
-#### A [Laravel](http://laravel.com/) 5.5.x with minimal [Bootstrap](http://getbootstrap.com) 3.7.x project.
-
-| Laravel-Auth Features  |
+###### A [Laravel](http://laravel.com/) 5.4.x with [Material Design Lite](https://getmdl.io/) 1.1.3 project.
+| Laravel Material Admin Features  |
 | :------------ |
-|Built on [Laravel](http://laravel.com/) 5.5|
-|Uses [MySQL](https://github.com/mysql) Database|
-|Uses [Artisan](http://laravel.com/docs/5.5/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Built on [Laravel](http://laravel.com/) 5.4 and [Material Design Lite](https://getmdl.io/) 1.1.3|
+|Uses [MySQL](https://github.com/mysql) Database and include migrations and seeds|
+|Uses [Artisan](http://laravel.com/docs/5.4/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
-|Laravel Scaffolding **User** and **Administrator Authentication**.|
-|User [Socialite Logins](https://github.com/laravel/socialite) ready to go - See API list used below|
-|[Google Maps API v3](https://developers.google.com/maps/documentation/javascript/) for User Location lookup and Geocoding|
-|CRUD (Create, Read, Update, Delete) Themes Management|
+|Laravel Scaffolding **User** and **Administrator Authentication**|
+|User Socialite Logins ready to go - See API list used below|
+|Google Maps API v3 for User Location lookup and Geocoding|
+|CRUD (Create, Read, Update, Delete) Tasks Management|
 |CRUD (Create, Read, Update, Delete) User Management|
-|Robust [Laravel Logging](https://laravel.com/docs/5.5/errors#logging) with admin UI using MonoLog|
-|Google [reCaptcha Protection with Google API](https://developers.google.com/recaptcha/)|
+|Users can upload profile background images|
+|User uploads are in protected storage API|
+|Google Captcha Protection with Google API|
 |User Registration with email verification|
-|Makes us of Laravel [Mix](https://laravel.com/docs/5.5/mix) to compile assets|
-|Makes use of [Language Localization Files](https://laravel.com/docs/5.5/localization)|
-|Active Nav states using [Laravel Requests](https://laravel.com/docs/5.5/requests)|
-|Restrict User Email Activation Attempts|
 |Capture IP to users table upon signup|
-|Uses [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) for development|
-|Makes us of [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)|
-|Makes use of [hideShowPassword](https://github.com/cloudfour/hideShowPassword)|
-|User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)|
-|User Gravatar using [Gravatar API](https://github.com/creativeorange/gravatar)|
 |User Password Reset via Email Token|
 |User Login with remember password|
-|User [Roles/ACL Implementation](https://github.com/jeremykenedy/laravel-roles)|
-|Makes of [Laravel's Soft Delete Structure](https://laravel.com/docs/5.5/eloquent#soft-deleting)|
-|Soft Deleted Users Management System|
-|Permanently Delete Soft Deleted Users|
-|User Delete Account with Goodbye email|
-|User Restore Deleted Account Token|
-|Restore Soft Deleted Users|
-|View Soft Deleted Users|
-|Captures Soft Delete Date|
-|Captures Soft Delete IP|
-|Admin Routing Details UI|
-|Admin PHP Information UI|
+|User have automatic Gravatar|
+|User roles implementation|
 |Eloquent user profiles|
-|User Themes|
-|404 Page|
-|403 Page|
-|Configurable Email Notification via [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)|
-|User Delete with Goodby email|
-|User Restore Deleted Account|
-|Activity Logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)|
+|Custom 404 Page|
 
-### Installation Instructions
-1. Run `sudo git clone https://github.com/jeremykenedy/laravel-auth.git laravel-auth`
+### Quick Project Setup
+###### (Not including the dev environment)
+1. Run `sudo git clone https://github.com/jeremykenedy/laravel-material-design.git laravel-material-design`
 2. Create a MySQL database for the project
     * ```mysql -u root -p```, if using Vagrant: ```mysql -u homestead -psecret```
-    * ```create database laravelAuth;```
+    * ```create database laravel_material;```
     * ```\q```
 3. From the projects root run `cp .env.example .env`
 4. Configure your `.env` file // NOTE: Google API Key will prevent maps error
-5. Run `sudo composer update` from the projects root folder
-6. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=config`
-7. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=migrations`
-8. Run `php artisan vendor:publish --provider="jeremykenedy\LaravelRoles\RolesServiceProvider" --tag=seeds`
-9. From the projects root folder run `sudo chmod -R 755 ../laravel-auth`
-10. From the projects root folder run `php artisan key:generate`
-11. From the projects root folder run `php artisan migrate`
-12. From the projects root folder run `composer dump-autoload`
-13. From the projects root folder run `php artisan db:seed`
+5. Run `sudo composer install` from the projects root folder
+6. From the projects root folder run `sudo chmod -R 755 ../laravel-material-design`
+7. From the projects root folder run `sudo php artisan key:generate`
+8. From the projects root folder run `sudo php artisan migrate`
+9. From the projects root folder run `sudo composer dump-autoload`
+10. From the projects root folder run `sudo php artisan db:seed`
 
-** Note ** In order for [Dropzone.js](http://www.dropzonejs.com/#configuration) to work you will need to run
-```
-npm install
-```
+#### View the Project in Browser
+1. From the projects root folder run `php artisan serve`
+2. Open your web browser and go to `http://localhost`
 
-#### Rebuild Front End Assets with Mix
-
-###### Rebuilding the front end of that project is OPTIONAL and can be done using Laravel [Mix](https://laravel.com/docs/5.5/mix) which is Elixers replacement.
-
-1. From the projects root folder run `npm install`
-2. From the projects root folder run `npm run dev` or `npm run production`
-  * You can watch assets with `npm run watch`
-
-#### Optionally Build Cache
-1. From the projects root folder run `sudo php artisan config:cache`
-
-###### And thats it with the caveat of setting up and configuring your development environment. I recommend [Laravel Homestead](https://laravel.com/docs/5.5/homestead)
-
-### Seeds
+###### Seeds
 1. Seeded Roles
-  * Unverified - Level 0
-  * User  - Level 1
-  * Administrator - Level 5
+   * user
+   * editor
+   * administrator
 
-2. Seeded Permissions
-  * view.users
-  * create.users
-  * edit.users
-  * delete.users
+And thats it with the caveat of setting up and configuring your development environemnt. I recommend [VAGRANT](https://docs.vagrantup.com/v2/getting-started/) or the Laravel configured instance of Vagrant called [HOMESTEAD](http://laravel.com/docs/5.1/homestead).
 
-3. Seeded Users
+#### Video/GIF Examples
+###### Project Setup fresh setup
+[Install Laravel Material Design](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-mdl-setup.gif)
 
-|Email|Password|Access|
-|:------------|:------------|:------------|
-|user@user.com|password|User Access|
-|admin@admin.com|password|Admin Access|
-
-4. Themes Seed List
-  * [ThemesTableSeeder](https://github.com/jeremykenedy/laravel-auth/blob/master/database/seeds/ThemesTableSeeder.php)
-
-### Routes
-
-#### Authentication Routes
+### laravel-material-design URL's (routes)
+* ```/```
 * ```/login```
 * ```/logout```
 * ```/register```
 * ```/password/email```
-* ```/password/reset```
-* ```/activate```
-* ```/activate/{token}```
-* ```/activation-required```
-* ```/re-activate/{token}```
 
-#### Profile Routes
+### laravel-material-design Alias Redirect URL's (routes)
+* ```/home```
+* ```/reset```
+* ```/login```
+* ```/logout```
+* ```/register```
+
+### laravel-material-design Profile Routes
 * ```/profile/{username}```
 * ```/profile/{username}/edit``` <- Editing in this view is limited to current user only.
 
-#### Admin User Management Routes
+### laravel-material-design Admin Routes
 * ```/users```
 * ```/users/create```
 * ```/users/{user_id}```
-* ```/users{user_id}/edit```
+* ```/users/{user_id}/edit```
 
-#### Admin Theme Routes
-* ```/themes```
-* ```/themes/create```
-* ```/themes/{theme_id}```
-* ```/themes/{theme_id}/edit```
+### Laravel-Tasks URL's (routes)
+* ```/tasks```
+* ```/tasks/create```
+* ```/tasks/{id}/edit```
+* ```/tasks-all```
+* ```/tasks-complete```
+* ```/tasks-incomplete```
 
-#### Admin Tools Routes
-* ```/logs```
-* ```/php```
-* ```/routes```
-
-#### Admin Soft Deleted Users Management Routes
-* ```/users/deleted```
-* ```/users/deleted/{user_id}```
-
-#### Activity Log Routes
-* ```/activity```
-* ```/activity/cleared```
-* ```/activity/log/{id}```
-* ```/activity/cleared/log/{id}```
-
-### Socialite
-
-#### Get Socialite Login API Keys:
+### Get Socialite Login API Keys:
 * [Google Captcha API](https://www.google.com/recaptcha/admin#list)
 * [Facebook API](https://developers.facebook.com/)
 * [Twitter API](https://apps.twitter.com/)
@@ -194,69 +103,62 @@ npm install
 * [Instagram API](https://instagram.com/developer/register/)
 * [37 Signals API](https://github.com/basecamp/basecamp-classic-api)
 
-#### Add More Socialite Logins
+### Other API keys
+* [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
+
+### Add More Socialite Logins
 * See full list of providers: [http://socialiteproviders.github.io](http://socialiteproviders.github.io/#providers)
 ###### **Steps**:
   1. Go to [http://socialiteproviders.github.io](http://socialiteproviders.github.io/providers/twitch/) and select the provider to be added.
-  2. From the projects root folder in terminal run composer command to get the needed package.
+  2. From the projects root folder in terminal run compser command to get the needed package.
      * Example:
-
       ```
          composer require socialiteproviders/twitch
       ```
-
   3. From the projects root folder run ```composer update```
   4. Add the service provider to ```/app/services.php```
      * Example:
-
      ```
-        'twitch' => [
-            'client_id'   => env('TWITCH_KEY'),
-            'client_secret' => env('TWITCH_SECRET'),
-            'redirect'    => env('TWITCH_REDIRECT_URI'),
-        ],
+    'twitch' => [
+        'client_id'     => env('TWITCH_KEY'),
+        'client_secret' => env('TWITCH_SECRET'),
+        'redirect'      => env('TWITCH_REDIRECT_URI'),
+    ],
      ```
-
   5. Add the API credentials to ``` /.env  ```
      * Example:
-
       ```
          TWITCH_KEY=YOURKEYHERE
          TWITCH_SECRET=YOURSECRETHERE
          TWITCH_REDIRECT_URI=http://YOURWEBSITEURL.COM/social/handle/twitch
       ```
-
   6. Add the social media login link:
       * Example:
-      In file ```/resources/views/auth/login.blade.php``` add ONE of the following:
+      In file ```/resources/views/login.blade.php``` add ONE of the following:
          * Conventional HTML:
-
       ```
+
          <a href="{{ route('social.redirect', ['provider' => 'twitch']) }}" class="btn btn-lg btn-primary btn-block twitch">Twitch</a>
-      ```
-
-         * Use Laravel HTML Facade with [Laravel Collective](https://laravelcollective.com/) (recommended)
 
       ```
+         * Use Laravel HTML Facade (recommended)
+      ```
+
          {!! HTML::link(route('social.redirect', ['provider' => 'twitch']), 'Twitch', array('class' => 'btn btn-lg btn-primary btn-block twitch')) !!}
+
       ```
 
-### Other API keys
-* [Google Maps API v3 Key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key)
+--
 
-
-### Environment File
+## Environment File
 
 Example `.env` file:
-
-```bash
-
+```
 APP_ENV=local
-APP_KEY=
+APP_KEY=SomeRandomString
 APP_DEBUG=true
 APP_LOG_LEVEL=debug
 APP_URL=http://localhost
-APP_NAME=Laravel
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -265,7 +167,6 @@ DB_DATABASE=laravelAuth
 DB_USERNAME=homestead
 DB_PASSWORD=secret
 
-BROADCAST_DRIVER=log
 CACHE_DRIVER=file
 SESSION_DRIVER=file
 QUEUE_DRIVER=sync
@@ -275,79 +176,13 @@ REDIS_PASSWORD=null
 REDIS_PORT=6379
 
 MAIL_DRIVER=smtp
-MAIL_HOST=mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-
-MAIL_FROM_ADDRESS=
-MAIL_FROM_NAME=''
-
-EMAIL_EXCEPTION_ENABLED=false
-EMAIL_EXCEPTION_FROM=email@email.com
-EMAIL_EXCEPTION_TO='email1@gmail.com, email2@gmail.com'
-EMAIL_EXCEPTION_CC=''
-EMAIL_EXCEPTION_BCC=''
-EMAIL_EXCEPTION_SUBJECT=''
-
-PUSHER_APP_ID=
-PUSHER_APP_KEY=
-PUSHER_APP_SECRET=
-
-ACTIVATION=true
-ACTIVATION_LIMIT_TIME_PERIOD=24
-ACTIVATION_LIMIT_MAX_ATTEMPTS=3
-
-NULL_IP_ADDRESS=0.0.0.0
-
-DEBUG_BAR_ENVIRONMENT=local
-
-USER_RESTORE_CUTOFF_DAYS=31
-USER_RESTORE_ENCRYPTION_KEY=
-
-DEFAULT_GRAVATAR_SIZE=80
-DEFAULT_GRAVATAR_FALLBACK=https://mir-s3-cdn-cf.behance.net/project_modules/disp/6ba40822433737.5632180017216.png
-DEFAULT_GRAVATAR_SECURE=false
-DEFAULT_GRAVATAR_MAX_RATING=g
-DEFAULT_GRAVATAR_FORCE_DEFAULT=false
-DEFAULT_GRAVATAR_FORCE_EXTENSION=jpg
-
-LARAVEL_LOGGER_DATABASE_CONNECTION=mysql
-LARAVEL_LOGGER_DATABASE_TABLE=laravel_logger_activity
-LARAVEL_LOGGER_ROLES_ENABLED=true
-LARAVEL_LOGGER_ROLES_MIDDLWARE=role:admin
-LARAVEL_LOGGER_MIDDLEWARE_ENABLED=true
-LARAVEL_LOGGER_USER_MODEL=App\Models\User
-LARAVEL_LOGGER_PAGINATION_ENABLED=true
-LARAVEL_LOGGER_PAGINATION_PER_PAGE=25
-LARAVEL_LOGGER_DATATABLES_ENABLED=false
-LARAVEL_LOGGER_DASHBOARD_MENU_ENABLED=true
-LARAVEL_LOGGER_DASHBOARD_DRILLABLE=true
-LARAVEL_LOGGER_LOG_RECORD_FAILURES_TO_FILE=true
-LARAVEL_LOGGER_FLASH_MESSAGE_BLADE_ENABLED=false
-LARAVEL_LOGGER_JQUERY_CDN_ENABLED=false
-LARAVEL_LOGGER_JQUERY_CDN_URL=https://code.jquery.com/jquery-2.2.4.min.js
-LARAVEL_LOGGER_BLADE_CSS_PLACEMENT_ENABLED=true
-LARAVEL_LOGGER_BLADE_JS_PLACEMENT_ENABLED=true
-LARAVEL_LOGGER_BOOTSTRAP_JS_CDN_ENABLED=false
-LARAVEL_LOGGER_BOOTSTRAP_JS_CDN_URL=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
-LARAVEL_LOGGER_FONT_AWESOME_CDN_ENABLED=false
-LARAVEL_LOGGER_FONT_AWESOME_CDN_URL=https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
-LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_ENABLED=false
-LARAVEL_LOGGER_BOOTSTRAP_CSS_CDN_URL=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css
-
-// NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
-# Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
-GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
-
-# https://console.developers.google.com/ - NEED OAUTH CREDS
-GOOGLE_ID=YOURGOOGLEPLUSidHERE
-GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
-GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=YOURGMAILusernameHERE
+MAIL_PASSWORD=YOURGMAILpasswordHERE
+MAIL_ENCRYPTION=tls
 
 # https://www.google.com/recaptcha/admin#list
-ENABLE_RECAPTCHA=true
 RE_CAP_SITE=YOURGOOGLECAPTCHAsitekeyHERE
 RE_CAP_SECRET=YOURGOOGLECAPTCHAsecretHERE
 
@@ -360,6 +195,11 @@ FB_REDIRECT=http://yourwebsiteURLhere.com/social/handle/facebook
 TW_ID=YOURTWITTERidHERE
 TW_SECRET=YOURTWITTERkeyHERE
 TW_REDIRECT=http://yourwebsiteURLhere.com/social/handle/twitter
+
+# https://console.developers.google.com/ - NEED OAUTH CREDS
+GOOGLE_ID=YOURGOOGLEPLUSidHERE
+GOOGLE_SECRET=YOURGOOGLEPLUSsecretHERE
+GOOGLE_REDIRECT=http://yourwebsiteURLhere.com/social/handle/google
 
 # https://github.com/settings/applications/new
 GITHUB_ID=YOURIDHERE
@@ -374,357 +214,428 @@ YOUTUBE_REDIRECT_URI=https://larablog.io/social/handle/youtube
 # http://www.twitch.tv/kraken/oauth2/clients/new
 TWITCH_KEY=YOURKEYHERE
 TWITCH_SECRET=YOURSECRETHERE
-TWITCH_REDIRECT_URI=http://laravel-authentication.local/social/handle/twitch
+TWITCH_REDIRECT_URI=http://laravel-material-design.local/social/handle/twitch
 
 # https://instagram.com/developer/register/
 INSTAGRAM_KEY=YOURKEYHERE
 INSTAGRAM_SECRET=YOURSECRETHERE
-INSTAGRAM_REDIRECT_URI=http://laravel-authentication.local/social/handle/instagram
+INSTAGRAM_REDIRECT_URI=http://laravel-material-design.local/social/handle/instagram
 
 # https://basecamp.com/
 # https://github.com/basecamp/basecamp-classic-api
 37SIGNALS_KEY=YOURKEYHERE
 37SIGNALS_SECRET=YOURSECRETHERE
-37SIGNALS_REDIRECT_URI=http://laravel-authentication.local/social/handle/37signals
+37SIGNALS_REDIRECT_URI=http://laravel-material-design.local/social/handle/37signals
 
-
+// NOTE: YOU CAN REMOVE THE KEY CALL IN app.blade.php IF YOU GET A POP UP AND DO NOT WANT TO SETUP A KEY FOR DEV
+# Google Maps API v3 Key - https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+GOOGLEMAPS_API_KEY=YOURGOOGLEMAPSkeyHERE
 ```
+
+### Helpful custom functions
+1. Dialogs (aka Modal)
+
+    1. Call Material Design Lite Dialog Box
+    ```
+    mdl_dialog(trigger,close,dialog)
+    ```
+    * The inputs are optional, the Defaults are as follows:
+    ```
+        var trigger = trigger || document.querySelector('.dialog-button');
+        var close = close || document.querySelector('.dialog-close');
+        var dialog = dialog || document.querySelector('#dialog');
+    ```
+
+    2. Add the desired dialog view to your template view with:
+    ```
+        @include('dialogs.dialog-save')
+    ```
+    * Substitute with the desired dialog blade.
+
+    3. Options
+
+        1. DELETE DIALOG OPTIONS
+        You can override the delete dialog title and save button text by passing your variables, otherwise the defaults will display.
+
+        Example:
+        ```
+        @include('dialogs.dialog-delete', ['dialogTitle' => 'Confirm Task Deletion', 'dialogSaveBtnText' => 'Delete'])
+        ```
+
+2. Datatabes
+
+    Give a table functionality with [DataTables](https://datatables.net)
+
+    a. Within the ```@section('template_scripts')``` section call the view with:
+    ```
+    @include('scripts.mdl-datatables')
+    ```
+
+    b. Add class ```data-table``` to your ```<table>``` to instantiate it as a datatable.
+
+    c You should add classes ```mdl-data-table``` and ```mdl-js-data-table``` for MDL styling (not required).
+
+    d. Optionally exclude/disable any column from being sortable by adding class ```no-sort``` to the ```<th>``` of the column.
+
+    e. Optionally exclude/disable any column from being searchable by adding class ```no-search``` to the ```<th>``` of the column.
+
+
+3. SnackBar / Toast
+
+    Use Google Material Design Lite built in notificatons outlined below:
+
+    1. Include ```@include('scripts.mdl-snackbar')``` call in the ```@section('template_scripts')``` section
+
+    2. Include ```@include('partials.mdl-snackbar')``` in your template
+
+    3. Call Snackbar/Toast using JavaScript: EXAMPLES BELOW
+
+        1. Snackbar
+
+        ###### SNACKBAR ACTION(s)
+        ```
+        var someActions = function(event) {
+            document.querySelector('.mdl-snackbar-trigger').style.backgroundColor = 'red';
+        };
+
+        ```
+
+        ######  SNACKBAR CALL - WITH ACTION(s)
+        ```
+        mdl_snackbar({
+            msg: 'Profile Updated',
+            timout: 4000,                               // OPTIONAL
+            snackBarTrigger: '.mdl-snackbar-trigger',   // OPTIONAL
+            actionText: 'Undo',                         // OPTIONAL
+            actionHandler: someActions,                 // OPTIONAL
+        });
+
+        ```
+
+        2. Toast
+
+        ###### TOAST CALL - NO ACTION
+        ```
+        mdl_snackbar({
+            msg: 'Profile Updated',
+            timout: 4000,
+            snackBarTrigger: '.mdl-snackbar-trigger'
+        });
+
+        ```
+
+        3. EXAMPLE CTA TO SnackBar/Toast
+
+        ```
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-snackbar-trigger" type="button">Show Toast</button>
+
+        ```
+
+### File Structure of Common Used Files
+```
+laravel-material-design/
+    ├── .env.example
+    ├── .gitattributes
+    ├── .gitignore
+    ├── artisan
+    ├── composer.json
+    ├── gulpfile.js
+    ├── LICENSE
+    ├── package.json
+    ├── phpspec.yml
+    ├── phpunit.xml
+    ├── README.md
+    ├── server.php
+    ├── app/
+    │   ├── Http/
+    │   │  ├── kernal.php
+    │   │  ├── routes.php
+    │   │  ├── Controllers/
+    │   │  │   ├── Auth/
+    │   │  │   │   ├── AuthController.php
+    │   │  │   │   └── PasswordController.php
+    │   │  │   ├── Controller.php
+    │   │  │   ├── HomeController.php
+    │   │  │   ├── ProfilesController.php
+    │   │  │   ├── UserController.php
+    │   │  │   ├── UsersManagementController.php
+    │   │  │   └── WelcomeController.php
+    │   │  ├── Middleware/
+    │   │  │   ├── Administrator.php
+    │   │  │   ├── Authenticate.php
+    │   │  │   ├── CheckCurrentUser.php
+    │   │  │   ├── Editor.php
+    │   │  │   ├── EncryptCookies.php
+    │   │  │   ├── RedirectAuthenticated.php
+    │   │  │   └── VerifyCsrfToken.php
+    │   │  └── Requests/
+    │   │      └── Request.php
+    │   ├── Logic/
+    │   │   ├── macros.php
+    │   │   ├── Mailers/
+    │   │   │   ├── Mailer.php
+    │   │   │   └── UserMailer.php
+    │   │   └── User/
+    │   │       ├── CaptureIp.php
+    │   │       └── UserRepository.php
+    │   ├── Models/
+    │   │   ├── Password.php
+    │   │   ├── Profile.php
+    │   │   ├── Role.php
+    │   │   ├── Social.php
+    │   │   └── User.php
+    │   ├── Providers/
+    │   │   ├── AppServiceProvider.php
+    │   │   ├── BusServiceProvider.php
+    │   │   ├── ConfigServiceProvider.php
+    │   │   ├── EventServiceProvider.php
+    │   │   ├── MacroServiceProvider.php
+    │   │   └── RouteServiceProvider.php
+    │   ├── Services/
+    │   │   └── Registrar.php
+    │   └── Traits/
+    │       └── CaptchaTrait.php
+    ├── config/
+    │   ├── app.php
+    │   ├── auth.php
+    │   ├── cache.php
+    │   ├── compile.php
+    │   ├── database.php
+    │   ├── filesystems.php
+    │   ├── mail.php
+    │   ├── queue.php
+    │   ├── services.php
+    │   ├── session.php
+    │   └── view.php
+    ├── database/
+    │   ├── migrations/
+    │   │   ├── 2014_10_12_000000_create_users_table.php
+    │   │   ├── 2014_10_12_100000_create_password_resets_table.php
+    │   │   ├── 2015_05_15_124334_update_users_table.php
+    │   │   ├── 2015_10_21_173121_create_users_roles.php
+    │   │   ├── 2015_10_21_173333_create_user_role.php
+    │   │   ├── 2015_10_21_173520_create_social_logins.php
+    │   │   ├── 2015_11_02_004932_create_profiles_table.php
+    │   │   ├── 2015_12_25_010553_add_signup_ip_address_to_users_table.php
+    │   │   ├── 2015_12_25_011117_add_signup_confirmation_ip_address_to_users_table.php
+    │   │   ├── 2015_12_25_025231_add_signup_sm_ip_address_to_users_table.php
+    │   │   └── 2016_04_19_045644_add_signup_admin_ip_address_to_users_table.php
+    │   └── seeds/
+    │       ├── DatabaseSeeder.php
+    │       └── SeedRoles.php
+    ├── public/
+    │   ├── .htaccess
+    │   ├── index.php
+    │   ├── robots.txt
+    │   └── assets/
+    │       ├── css/
+    │       ├── fonts/
+    │       └── ~~js/~~
+    ├── resources/
+    │   ├── assets/
+    │   │   ├── js/
+    │   │   │   ├── alerts.js
+    │   │   │   ├── dialogs.js
+    │   │   │   ├── mdl-datatables.js
+    │   │   │   └── spinners.js
+    │   │   └── sass/
+    │   │       ├── components/
+    │   │       │   ├── _alerts.scss
+    │   │       │   ├── _badges.scss
+    │   │       │   ├── _breadcrumbs.scss
+    │   │       │   ├── _cards.scss
+    │   │       │   ├── _dialogs.scss
+    │   │       │   ├── _inputs.scss
+    │   │       │   ├── _lists.scss
+    │   │       │   ├── _material-icons.scss
+    │   │       │   ├── _social-icons.scss
+    │   │       │   ├── _spinners.scss
+    │   │       │   └── _tables.scss
+    │   │       ├── layouts/
+    │   │       │   ├── _auth.scss
+    │   │       │   └── _dashboard.scss
+    │   │       ├── partials/
+    │   │       │   ├── _base.scss
+    │   │       │   ├── _helpers.scss
+    │   │       │   ├── _typography.scss
+    │   │       │   └── _variables.scss
+    │   │       └── app.scss
+    │   ├── lang/
+    │   │   └── en/
+    │   │       ├── auth.php
+    │   │       ├── dialogs.php
+    │   │       ├── emails.php
+    │   │       ├── forms.php
+    │   │       ├── links-and-buttons.php
+    │   │       ├── pagination.php
+    │   │       ├── passwords.php
+    │   │       ├── profile.php
+    │   │       ├── titles.php
+    │   │       └── validation.php
+    │   └── views/
+    │       ├── app.blade.php
+    │       ├── welcome.blade.php
+    │       ├── admin/
+    │       │   ├── create-user.blade.php
+    │       │   ├── edit-user.blade.php
+    │       │   ├── show-user.blade.php
+    │       │   └── show-users.blade.php
+    │       ├── auth/
+    │       │   ├── activateAccount.blade.php
+    │       │   ├── guest_activate.blade.php
+    │       │   ├── login.blade.php
+    │       │   ├── password.blade.php
+    │       │   ├── register.blade.php
+    │       │   ├── reset.blade.php
+    │       │   └── tooManyEmails.blade.php
+    │       ├── cards/
+    │       │   ├── check-list-card.blade.php
+    │       │   ├── hero-image-card.blade.php
+    │       │   └── user-profile-card.blade.php
+    │       ├── dialogs/
+    │       │   ├── dialog-delete.blade.php
+    │       │   └── dialog-save.blade.php
+    │       ├── emails/
+    │       │   ├── activateAccount.blade.php
+    │       │   └── password.blade.php
+    │       ├── errors/
+    │       │   ├── 403.blade.php
+    │       │   ├── 404.blade.php
+    │       │   └── 503.blade.php
+    │       ├── modules/
+    │       │   ├── charts.blade.php
+    │       │   └── pie-charts.blade.php
+    │       ├── pages/
+    │       │   ├── home.blade.php
+    │       │   └── status.blade.php
+    │       ├── partials
+    │       │   ├── account-nav.blade.php
+    │       │   ├── drawer-nav.blade.php
+    │       │   ├── form-status.blade.php
+    │       │   ├── header-nav.blade.php
+    │       │   └── search-bar.blade.php
+    │       ├── profiles
+    │       │   ├── edit.blade.php
+    │       │   └── show.blade.php
+    │       └── scripts
+    │           ├── gmaps-address-lookup-api3.blade.php
+    │           ├── google-maps-geocode-and-map.blade.php
+    │           ├── html5-password-match-check.blade.php
+    │           ├── mdl-datatables.blade.php
+    │           └── mdl-required-input-fix.blade.php
+    ├── storage/
+    ├── tests/
+    └── vendor/ <-Note: Compiled with Composer.
+```
+
+## Screenshots
+
+###### Login Desktop
+![Login Screen](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/login-desktop.jpg "Laravel Material Design Login")
+
+###### Login Mobile
+![Login Screen](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/login-mobile.jpg "Laravel Material Design Login")
+
+###### User Profile Menu
+![User Profile Menu](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/user-menu-1.jpg "Laravel Material Design")
+
+###### User Top Nav
+![User Top Nav](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/user-nav.jpg "Laravel Material Design")
+
+###### Mobile Drawer Nav
+![Mobile Drawer Nav](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/mobile-nav-drawer.jpg "Laravel Material Design")
+
+###### Admin View - User List Desktop
+![Admin View - User List Desktop](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/user-list-desktop.jpg "Laravel Material Design")
+
+###### Admin View - User List Mobile
+![Admin View - User List Mobile](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/user-list-mobile.jpg "Laravel Material Design")
+
+###### Alert Error Example
+![Alert Error Example](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/alert-error.jpg "Laravel Material Design")
+
+###### Alert Success Example
+![Alert Success Example](https://s3-us-west-2.amazonaws.com/laravel-material-design/screenshots/alert-succes.jpg "Laravel Material Design")
+
+---
 
 #### Laravel Developement Packages Used References
-* http://laravel.com/docs/5.5/authentication
-* http://laravel.com/docs/5.5/authorization
-* http://laravel.com/docs/5.5/routing
-* https://laravel.com/docs/5.5/migrations
-* https://laravel.com/docs/5.5/queries
-* https://laravel.com/docs/5.5/views
-* https://laravel.com/docs/5.5/eloquent
-* https://laravel.com/docs/5.5/eloquent-relationships
-* https://laravel.com/docs/5.5/requests
-* https://laravel.com/docs/5.5/errors
+* http://laravel.com/docs/5.1/authentication
+* http://laravel.com/docs/5.1/authorization
+* http://laravel.com/docs/5.1/routing
+* http://laravel.com/docs/5.0/schema
+* https://laravelcollective.com/docs/5.4/html
+* http://laravel.com/docs/5.4/authentication
+* http://laravel.com/docs/5.4/authorization
+* http://laravel.com/docs/5.4/routing
+
+---
 
 ###### Updates:
-* Added activity logging using [Laravel-logger](https://github.com/jeremykenedy/laravel-logger)
-* Added Configurable Email Notification using [Laravel-Exception-Notifier](https://github.com/jeremykenedy/laravel-exception-notifier)
-* Update to Laravel 5.5
-* Added User Delete with Goodbye email
-* Added User Restore Deleted Account from email with secure token
-* Added [Soft Deletes](https://laravel.com/docs/5.5/eloquent#soft-deleting) and Soft Deletes Management panel
-* Added User Account Settings to Profile Edit
-* Added User Change Password to Profile Edit
-* Added User Delete Account to Profile Edit
-* Added [Password Strength Meter](https://github.com/elboletaire/password-strength-meter)
-* Added [hideShowPassword](https://github.com/cloudfour/hideShowPassword)
-* Added Admin Routing Details
-* Admin PHP Information
-* Added Robust [Laravel Logging](https://laravel.com/docs/5.5/errors#logging) with admin UI using MonoLog
-* Added Active Nav states using [Laravel Requests](https://laravel.com/docs/5.5/requests)
-* Added [Laravel Debugger](https://github.com/barryvdh/laravel-debugbar) with Service Provider to manage status in `.env` file.
-* Updated Capture IP not found IP address
-* Added User Avatar Image AJAX Upload with [Dropzone.js](http://www.dropzonejs.com/#configuration)
-* Added User Gravatar using Gravatar API
-* Added Themes Management.
-* Add user profiles with seeded list and global view
-* Major overhaul on Laravel 5.4
-* Update from Laravel 5.1 to 5.2
-* Added eloquent editable user profile
-* Added IP Capture
-* Added Google Maps API v3 for User Location lookup
-* Added Google Maps API v3 for User Location Input Geocoding
-* Added Google Maps API v3 for User Location Map with Options
-* Added CRUD(Create, Read, Update, Delete) User Management
+*
 
-### Screenshots
-![Login](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/1laravel-auth2-login.jpg)
-![Register](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/2laravel-auth2-register.jpg)
-![Registration Confirmation](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/3laravel-auth2-account-req-activation.jpg)
-![Registration Email](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/4laravel-auth2-activation-email.jpg)
-![Registration Complete](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/5laravel-auth2-userhome-with-flash-success.jpg)
-![Intial User Profile](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/6laravel-auth2-profile-mapless.jpg)
-![Edit User Profile](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/7laravel-auth2-profile-edit.jpg)
-![Find Location Using Google Maps API v3](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/8laravel-auth2-edit-profile-lookup.jpg)
-![Profile Updated](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/9laravel-auth2-flash-success.jpg)
-![Profile Semi-completed](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/10laravel-auth2-profile-with-map.jpg)
-![Admin Panel Users List](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/11laravel-auth2-users-list.jpg)
-![Admin Panel Delete User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/12laravel-auth2-modal-delete.jpg)
-![Admin Panel Flash Error](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/13laravel-auth2-flash-error.jpg)
-![Admin Panel Show User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/14laravel-auth2-show-edit.jpg)
-![Admin Panel Edit User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/15laravel-auth2-edit-user.jpg)
-![Admin Panel Save Edits](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/16laravel-auth2-modal-save.jpg)
-![Admin Panel Create User](https://s3-us-west-2.amazonaws.com/github-project-images/laravel-auth/17laravel-auth-create-user.jpg)
+---
 
-### File Tree
+### [Laravel](http://laravel.com/) PHP Framework
+
+[![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework) [![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+
+Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+
+Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+
+### Official Laravel Documentation
+
+Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
+
+### Contributing To Laravel
+
+**All Laravel Framework related issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
+
+### Laravel License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+---
+
+### [Material Design Lite](https://getmdl.io/) Front-End Framework
+
+[![GitHub version](https://badge.fury.io/gh/google%2Fmaterial-design-lite.svg)](https://badge.fury.io/gh/google%2Fmaterial-design-lite)
+[![npm version](https://badge.fury.io/js/material-design-lite.svg)](https://badge.fury.io/js/material-design-lite)
+[![Bower version](https://badge.fury.io/bo/material-design-lite.svg)](https://badge.fury.io/bo/material-design-lite)
+[![Dependency Status](https://david-dm.org/google/material-design-lite.svg)](https://david-dm.org/google/material-design-lite)
+
+> An implementation of [Material Design](http://www.google.com/design/spec/material-design/introduction.html)
+components in vanilla CSS, JS, and HTML.
+
+Material Design Lite (MDL) lets you add a Material Design look and feel to your
+static content websites. It doesn't rely on any JavaScript frameworks or
+libraries. Optimized for cross-device use, gracefully degrades in older
+browsers, and offers an experience that is accessible from the get-go.
+
+---
+
+## Dependencies
+
+### COMPOSER
+#### COMPOSER can be installed using the following commands:
 ```
-laravel-auth
-├── .env.example
-├── .env.travis
-├── .gitattributes
-├── .gitignore
-├── .travis.yml
-├── CODE_OF_CONDUCT.md
-├── LICENSE
-├── README.md
-├── app
-│   ├── Console
-│   │   ├── Commands
-│   │   │   └── DeleteExpiredActivations.php
-│   │   └── Kernel.php
-│   ├── Exceptions
-│   │   └── Handler.php
-│   ├── Http
-│   │   ├── Controllers
-│   │   │   ├── AdminDetailsController.php
-│   │   │   ├── Auth
-│   │   │   │   ├── ActivateController.php
-│   │   │   │   ├── ForgotPasswordController.php
-│   │   │   │   ├── LoginController.php
-│   │   │   │   ├── RegisterController.php
-│   │   │   │   ├── ResetPasswordController.php
-│   │   │   │   └── SocialController.php
-│   │   │   ├── Controller.php
-│   │   │   ├── ProfilesController.php
-│   │   │   ├── RestoreUserController.php
-│   │   │   ├── SoftDeletesController.php
-│   │   │   ├── ThemesManagementController.php
-│   │   │   ├── UserController.php
-│   │   │   ├── UsersManagementController.php
-│   │   │   └── WelcomeController.php
-│   │   ├── Kernel.php
-│   │   ├── Middleware
-│   │   │   ├── Authenticate.php
-│   │   │   ├── CheckCurrentUser.php
-│   │   │   ├── CheckIsUserActivated.php
-│   │   │   ├── EncryptCookies.php
-│   │   │   ├── RedirectIfAuthenticated.php
-│   │   │   ├── TrimStrings.php
-│   │   │   └── VerifyCsrfToken.php
-│   │   └── ViewComposers
-│   │       └── ThemeComposer.php
-│   ├── Logic
-│   │   ├── Activation
-│   │   │   └── ActivationRepository.php
-│   │   └── Macros
-│   │       └── HtmlMacros.php
-│   ├── Mail
-│   │   └── ExceptionOccured.php
-│   ├── Models
-│   │   ├── Activation.php
-│   │   ├── Profile.php
-│   │   ├── Social.php
-│   │   ├── Theme.php
-│   │   └── User.php
-│   ├── Notifications
-│   │   ├── SendActivationEmail.php
-│   │   └── SendGoodbyeEmail.php
-│   ├── Providers
-│   │   ├── AppServiceProvider.php
-│   │   ├── AuthServiceProvider.php
-│   │   ├── BroadcastServiceProvider.php
-│   │   ├── ComposerServiceProvider.php
-│   │   ├── EventServiceProvider.php
-│   │   ├── LocalEnvironmentServiceProvider.php
-│   │   ├── MacroServiceProvider.php
-│   │   └── RouteServiceProvider.php
-│   └── Traits
-│       ├── ActivationTrait.php
-│       ├── CaptchaTrait.php
-│       └── CaptureIpTrait.php
-├── artisan
-├── bootstrap
-│   ├── app.php
-│   ├── autoload.php
-│   └── cache
-│       └── .gitignore
-├── composer.json
-├── config
-│   ├── app.php
-│   ├── auth.php
-│   ├── broadcasting.php
-│   ├── cache.php
-│   ├── database.php
-│   ├── debugbar.php
-│   ├── exceptions.php
-│   ├── filesystems.php
-│   ├── gravatar.php
-│   ├── mail.php
-│   ├── queue.php
-│   ├── roles.php
-│   ├── services.php
-│   ├── session.php
-│   ├── settings.php
-│   └── view.php
-├── database
-│   ├── .gitignore
-│   ├── factories
-│   │   └── ModelFactory.php
-│   ├── migrations
-│   │   ├── 2014_10_12_000000_create_users_table.php
-│   │   ├── 2014_10_12_100000_create_password_resets_table.php
-│   │   ├── 2016_01_15_105324_create_roles_table.php
-│   │   ├── 2016_01_15_114412_create_role_user_table.php
-│   │   ├── 2016_01_26_115212_create_permissions_table.php
-│   │   ├── 2016_01_26_115523_create_permission_role_table.php
-│   │   ├── 2016_02_09_132439_create_permission_user_table.php
-│   │   ├── 2017_03_09_082449_create_social_logins_table.php
-│   │   ├── 2017_03_09_082526_create_activations_table.php
-│   │   ├── 2017_03_20_213554_create_themes_table.php
-│   │   └── 2017_03_21_042918_create_profiles_table.php
-│   └── seeds
-│       ├── ConnectRelationshipsSeeder.php
-│       ├── DatabaseSeeder.php
-│       ├── PermissionsTableSeeder.php
-│       ├── RolesTableSeeder.php
-│       ├── ThemesTableSeeder.php
-│       └── UsersTableSeeder.php
-├── license.svg
-├── package.json
-├── phpunit.xml
-├── public
-│   ├── .htaccess
-│   ├── css
-│   │   └── app.5c1428c07e35994073c2.css
-│   ├── favicon.ico
-│   ├── fonts
-│   │   ├── fontawesome-webfont.eot
-│   │   ├── fontawesome-webfont.svg
-│   │   ├── fontawesome-webfont.ttf
-│   │   ├── fontawesome-webfont.woff
-│   │   ├── fontawesome-webfont.woff2
-│   │   ├── glyphicons-halflings-regular.eot
-│   │   ├── glyphicons-halflings-regular.svg
-│   │   ├── glyphicons-halflings-regular.ttf
-│   │   ├── glyphicons-halflings-regular.woff
-│   │   └── glyphicons-halflings-regular.woff2
-│   ├── images
-│   │   ├── wink.png
-│   │   └── wink.svg
-│   ├── index.php
-│   ├── js
-│   │   └── app.0a5140ae2ab7468f1f8d.js
-│   ├── mix-manifest.json
-│   ├── robots.txt
-│   └── web.config
-├── resources
-│   ├── assets
-│   │   ├── js
-│   │   │   ├── app.js
-│   │   │   ├── bootstrap.js
-│   │   │   └── components
-│   │   │       └── Example.vue
-│   │   └── sass
-│   │       ├── _avatar.scss
-│   │       ├── _badges.scss
-│   │       ├── _buttons.scss
-│   │       ├── _forms.scss
-│   │       ├── _helpers.scss
-│   │       ├── _hideShowPassword.scss
-│   │       ├── _lists.scss
-│   │       ├── _logs.scss
-│   │       ├── _margins.scss
-│   │       ├── _mixins.scss
-│   │       ├── _modals.scss
-│   │       ├── _panels.scss
-│   │       ├── _password.scss
-│   │       ├── _php-info.scss
-│   │       ├── _socials.scss
-│   │       ├── _typography.scss
-│   │       ├── _variables.scss
-│   │       ├── _wells.scss
-│   │       └── app.scss
-│   ├── lang
-│   │   └── en
-│   │       ├── auth.php
-│   │       ├── emails.php
-│   │       ├── forms.php
-│   │       ├── modals.php
-│   │       ├── pagination.php
-│   │       ├── passwords.php
-│   │       ├── permsandroles.php
-│   │       ├── profile.php
-│   │       ├── socials.php
-│   │       ├── themes.php
-│   │       ├── titles.php
-│   │       ├── usersmanagement.php
-│   │       └── validation.php
-│   └── views
-│       ├── auth
-│       │   ├── activation.blade.php
-│       │   ├── exceeded.blade.php
-│       │   ├── login.blade.php
-│       │   ├── passwords
-│       │   │   ├── email.blade.php
-│       │   │   └── reset.blade.php
-│       │   └── register.blade.php
-│       ├── emails
-│       │   └── exception.blade.php
-│       ├── errors
-│       │   ├── 403.blade.php
-│       │   ├── 404.blade.php
-│       │   ├── 500.blade.php
-│       │   └── 503.blade.php
-│       ├── home.blade.php
-│       ├── layouts
-│       │   └── app.blade.php
-│       ├── modals
-│       │   ├── modal-delete.blade.php
-│       │   ├── modal-form.blade.php
-│       │   └── modal-save.blade.php
-│       ├── pages
-│       │   ├── admin
-│       │   │   ├── home.blade.php
-│       │   │   ├── php-details.blade.php
-│       │   │   └── route-details.blade.php
-│       │   ├── status.blade.php
-│       │   └── user
-│       │       └── home.blade.php
-│       ├── panels
-│       │   └── welcome-panel.blade.php
-│       ├── partials
-│       │   ├── errors.blade.php
-│       │   ├── form-status.blade.php
-│       │   ├── nav.blade.php
-│       │   ├── socials-icons.blade.php
-│       │   ├── socials.blade.php
-│       │   ├── status-panel.blade.php
-│       │   └── status.blade.php
-│       ├── profiles
-│       │   ├── edit.blade.php
-│       │   └── show.blade.php
-│       ├── scripts
-│       │   ├── check-changed.blade.php
-│       │   ├── datatables.blade.php
-│       │   ├── delete-modal-script.blade.php
-│       │   ├── form-modal-script.blade.php
-│       │   ├── gmaps-address-lookup-api3.blade.php
-│       │   ├── google-maps-geocode-and-map.blade.php
-│       │   ├── save-modal-script.blade.php
-│       │   ├── toggleStatus.blade.php
-│       │   ├── tooltips.blade.php
-│       │   └── user-avatar-dz.blade.php
-│       ├── themesmanagement
-│       │   ├── add-theme.blade.php
-│       │   ├── edit-theme.blade.php
-│       │   ├── show-theme.blade.php
-│       │   └── show-themes.blade.php
-│       ├── usersmanagement
-│       │   ├── create-user.blade.php
-│       │   ├── edit-user.blade.php
-│       │   ├── show-deleted-user.blade.php
-│       │   ├── show-deleted-users.blade.php
-│       │   ├── show-user.blade.php
-│       │   └── show-users.blade.php
-│       └── welcome.blade.php
-├── routes
-│   ├── api.php
-│   ├── channels.php
-│   ├── console.php
-│   └── web.php
-├── server.php
-├── webpack.mix.js
-└── yarn.lock
+sudo curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
 ```
 
-* Tree command can be installed using brew: `brew install tree`
-* File tree generated using command `tree -a -I '.git|node_modules|vendor|storage|tests`
+#### COMPOSER on MAC OS X can be installed using the following commands:
+```
+sudo brew update
+sudo brew tap homebrew/dupes
+sudo brew tap homebrew/php
+sudo brew install composer
+```
 
-### Laravel Auth License
-Laravel-auth is licensed under the MIT license. Enjoy!
+---
+
+## Enjoy
+
+###### ~ **Jeremy**

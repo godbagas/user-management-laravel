@@ -13,7 +13,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-  @extends('layouts.app')
+  @extends('layouts.auth')
+  @section('template_title')
+      {{ trans('auth.loginPageTitle') }}
+  @endsection
  <!--SIGN IN-->
  @section('content')
  <div>
@@ -45,11 +48,18 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
+                    {!! HTML::link(route('password.request'), trans('auth.forgot'), array('id' => 'forgot', 'class' => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect left')) !!}
+                    {!! HTML::link(url('/register'), trans('auth.register'), array('id' => 'register', 'class' => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right')) !!}
 						</div>
+
+
+
             <div class="signin">
           		<input type="submit" value="Login" >
           	</div>
+
 			</form>
+
 </div>
 @endsection
 </body>

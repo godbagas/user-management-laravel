@@ -14,6 +14,10 @@
 </head>
 <body>
   
+  <?php $__env->startSection('template_title'); ?>
+      <?php echo e(trans('auth.loginPageTitle')); ?>
+
+  <?php $__env->stopSection(); ?>
  <!--SIGN IN-->
  <?php $__env->startSection('content'); ?>
  <div>
@@ -46,14 +50,23 @@
                             <strong><?php echo e($errors->first('password')); ?></strong>
                         </span>
                     <?php endif; ?>
+                    <?php echo HTML::link(route('password.request'), trans('auth.forgot'), array('id' => 'forgot', 'class' => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect left')); ?>
+
+                    <?php echo HTML::link(url('/register'), trans('auth.register'), array('id' => 'register', 'class' => 'mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect right')); ?>
+
 						</div>
+
+
+
             <div class="signin">
           		<input type="submit" value="Login" >
           	</div>
+
 			</form>
+
 </div>
 <?php $__env->stopSection(); ?>
 </body>
 </html>
 
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.auth', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

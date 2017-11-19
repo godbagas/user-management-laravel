@@ -3,433 +3,214 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php
+<?php $__env->startSection('header'); ?>
+  Showing <?php echo e($user->name); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php 
   $levelAmount = trans('usersmanagement.labelUserLevel');
   if ($user->level() >= 2) {
       $levelAmount = trans('usersmanagement.labelUserLevels');
   }
-?>
+ ?>
+
+<?php $__env->startSection('breadcrumbs'); ?>
+  <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="<?php echo e(url('/')); ?>">
+      <span itemprop="name">
+        <?php echo e(trans('titles.app')); ?>
+
+      </span>
+    </a>
+    <i class="material-icons">chevron_right</i>
+    <meta itemprop="position" content="1" />
+  </li>
+  <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="/users">
+      <span itemprop="name">
+        Users List
+      </span>
+    </a>
+    <i class="material-icons">chevron_right</i>
+    <meta itemprop="position" content="2" />
+  </li>
+  <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <a itemprop="item" href="/users/<?php echo e($user->id); ?>">
+      <span itemprop="name">
+        <?php echo e($user->name); ?>
+
+      </span>
+    </a>
+    <meta itemprop="position" content="3" />
+  </li>
+<?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
 
-        <div class="panel <?php if($user->activated == 1): ?> panel-success <?php else: ?> panel-danger <?php endif; ?>">
 
-          <div class="panel-heading">
-            <a href="/users/" class="btn btn-primary btn-xs pull-right">
-              <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-              <span class="hidden-xs"><?php echo e(trans('usersmanagement.usersBackBtn')); ?></span>
-            </a>
-            <?php echo e(trans('usersmanagement.usersPanelTitle')); ?>
+<?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($role->name == 'User'): ?>
+        <?php 
+            $levelIcon        = 'person';
+            $levelName        = 'User';
+            $levelBgClass     = 'mdl-color--blue-200';
+            $leveIconlBgClass = 'mdl-color--blue-500';
+         ?>
+    <?php elseif($role->name == 'Admin'): ?>
+        <?php 
+            $levelIcon        = 'supervisor_account';
+            $levelName        = 'Admin';
+            $levelBgClass     = 'mdl-color--red-200';
+            $leveIconlBgClass = 'mdl-color--red-500';
+         ?>
+    <?php elseif($role->name == 'Unverified'): ?>
+        <?php 
+            $levelIcon        = 'person_outline';
+            $levelName        = 'Unverified';
+            $levelBgClass     = 'mdl-color--orange-200';
+            $leveIconlBgClass = 'mdl-color--orange-500';
+         ?>
+    <?php else: ?>
+        <?php 
+            $levelIcon        = 'person_outline';
+            $levelName        = 'Unverified';
+            $levelBgClass     = 'mdl-color--orange-200';
+            $leveIconlBgClass = 'mdl-color--orange-500';
+         ?>
+    <?php endif; ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-          </div>
-          <div class="panel-body">
 
-            <div class="well">
-              <div class="row">
-                <div class="col-sm-6">
-                  <img src="<?php if($user->profile && $user->profile->avatar_status == 1): ?> <?php echo e($user->profile->avatar); ?> <?php else: ?> <?php echo e(Gravatar::get($user->email)); ?> <?php endif; ?>" alt="<?php echo e($user->name); ?>" id="" class="img-circle center-block margin-bottom-2 margin-top-1 user-image">
-                </div>
 
-                <div class="col-sm-6">
-                  <h4 class="text-muted margin-top-sm-1 text-center text-left-tablet">
-                    <?php echo e($user->name); ?>
 
-                  </h4>
-                  <p class="text-center text-left-tablet">
-                    <strong>
-                      <?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?>
+<div class="mdl-grid full-grid margin-top-0 padding-0">
+  <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
+      <div class="mdl-card card-wide" style="width:100%;" itemscope itemtype="http://schema.org/Person">
+      <div class="mdl-user-avatar">
+        <!-- <img src="<?php echo e(Gravatar::get($user->email)); ?>" alt="<?php echo e($user->name); ?>"> -->
+        <!-- <img src="<?php echo e(asset('images/spiderman_avatar.png')); ?>" alt="<?php echo e($user->name); ?>"> -->
+        <span itemprop="image" style="display:none;"><?php echo e(Gravatar::get($user->email)); ?></span>
+      </div>
 
-                    </strong>
-                    <br />
-                    <?php echo e(HTML::mailto($user->email, $user->email)); ?>
+        <div class="mdl-card__supporting-text">
+        <div class="mdl-grid full-grid padding-0">
+          <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+              <ul class="demo-list-icon mdl-list">
+                  <li class="mdl-list__item mdl-typography--font-light">
+                    <div class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-icon">security</i>
+                      <span class="mdl-chip mdl-chip--contact <?php echo e($levelBgClass); ?> mdl-color-text--white md-chip">
+                        <span class="mdl-chip__contact <?php echo e($leveIconlBgClass); ?> mdl-color-text--white">
+                            <i class="material-icons"><?php echo e($levelIcon); ?></i>
+                        </span>
+                        <span class="mdl-chip__text"><?php echo e($levelName); ?></span>
+                      </span>
+                    </div>
+                  </li>
 
-                  </p>
-
-                  <?php if($user->profile): ?>
-                    <div class="text-center text-left-tablet margin-bottom-1">
-
-                      <a href="<?php echo e(url('/profile/'.$user->name)); ?>" class="btn btn-sm btn-info">
-                        <i class="fa fa-eye fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> <?php echo e(trans('usersmanagement.viewProfile')); ?></span>
-                      </a>
-
-                      <a href="/users/<?php echo e($user->id); ?>/edit" class="btn btn-sm btn-warning">
-                        <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md"> <?php echo e(trans('usersmanagement.editUser')); ?> </span>
-                      </a>
-
-                      <?php echo Form::open(array('url' => 'users/' . $user->id, 'class' => 'form-inline')); ?>
-
-                        <?php echo Form::hidden('_method', 'DELETE'); ?>
-
-                        <?php echo Form::button('<i class="fa fa-trash-o fa-fw" aria-hidden="true"></i> <span class="hidden-xs hidden-sm hidden-md">' . trans('usersmanagement.deleteUser') . '</span>' , array('class' => 'btn btn-danger btn-sm','type' => 'button', 'data-toggle' => 'modal', 'data-target' => '#confirmDelete', 'data-title' => 'Delete User', 'data-message' => 'Are you sure you want to delete this user?')); ?>
-
-                      <?php echo Form::close(); ?>
-
+                  <li class="mdl-list__item mdl-typography--font-light">
+                    <div class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-icon">event</i>
+                      Created: <?php echo e($user->created_at); ?>
 
                     </div>
-                  <?php endif; ?>
+                  </li>
 
-                </div>
-              </div>
+                  <li class="mdl-list__item mdl-typography--font-light">
+                    <div class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-icon">person</i>
+                      <span itemprop="name">
+                        <?php echo e($user->first_name); ?> <?php if($user->last_name): ?> <?php echo e($user->last_name); ?> <?php endif; ?>
+                      </span>
+                    </div>
+                  </li>
+
+                  <li class="mdl-list__item mdl-typography--font-light">
+                    <div class="mdl-list__item-primary-content">
+                      <i class="material-icons mdl-list__item-icon">contact_mail</i>
+                      <span itemprop="email">
+                    <?php echo e($user->email); ?>
+
+                  </span>
+                    </div>
+                  </li>
+
+
+        </div>
+        </div>
+        <?php if(Auth::user()->id == $user->id): ?>
+          <div class="mdl-card__actions">
+          <div class="mdl-grid full-grid">
+            <div class="mdl-cell mdl-cell--12-col">
+              <a href="/profile/<?php echo e(Auth::user()->name); ?>/edit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-shadow--3dp mdl-button--raised mdl-button--primary mdl-color-text--white">
+                <i class="material-icons padding-right-half-1">edit</i>
+                <?php echo e(Lang::get('titles.editProfile')); ?>
+
+              </a>
             </div>
-
-            <div class="clearfix"></div>
-            <div class="border-bottom"></div>
-
-            <?php if($user->name): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelUserName')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->name); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->email): ?>
-
-            <div class="col-sm-5 col-xs-6 text-larger">
-              <strong>
-                <?php echo e(trans('usersmanagement.labelEmail')); ?>
-
-              </strong>
-            </div>
-
-            <div class="col-sm-7">
-              <?php echo e(HTML::mailto($user->email, $user->email)); ?>
-
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->first_name): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelFirstName')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->first_name); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->last_name): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelLastName')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->last_name); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <div class="col-sm-5 col-xs-6 text-larger">
-              <strong>
-                <?php echo e(trans('usersmanagement.labelRole')); ?>
-
-              </strong>
-            </div>
-
-            <div class="col-sm-7">
-              <?php $__currentLoopData = $user->roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user_role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-                <?php if($user_role->name == 'User'): ?>
-                  <?php $labelClass = 'primary' ?>
-
-                <?php elseif($user_role->name == 'Admin'): ?>
-                  <?php $labelClass = 'warning' ?>
-
-                <?php elseif($user_role->name == 'Unverified'): ?>
-                  <?php $labelClass = 'danger' ?>
-
-                <?php else: ?>
-                  <?php $labelClass = 'default' ?>
-
-                <?php endif; ?>
-
-                <span class="label label-<?php echo e($labelClass); ?>"><?php echo e($user_role->name); ?></span>
-
-              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="border-bottom"></div>
-
-            <div class="col-sm-5 col-xs-6 text-larger">
-              <strong>
-                <?php echo e(trans('usersmanagement.labelStatus')); ?>
-
-              </strong>
-            </div>
-
-            <div class="col-sm-7">
-              <?php if($user->activated == 1): ?>
-                <span class="label label-success">
-                  Activated
-                </span>
-              <?php else: ?>
-                <span class="label label-danger">
-                  Not-Activated
-                </span>
-              <?php endif; ?>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="border-bottom"></div>
-
-            <div class="col-sm-5 col-xs-6 text-larger">
-              <strong>
-                <?php echo e(trans('usersmanagement.labelAccessLevel')); ?> <?php echo e($levelAmount); ?>:
-              </strong>
-            </div>
-
-            <div class="col-sm-7">
-
-              <?php if($user->level() >= 5): ?>
-                <span class="label label-primary margin-half margin-left-0">5</span>
-              <?php endif; ?>
-
-              <?php if($user->level() >= 4): ?>
-                 <span class="label label-info margin-half margin-left-0">4</span>
-              <?php endif; ?>
-
-              <?php if($user->level() >= 3): ?>
-                <span class="label label-success margin-half margin-left-0">3</span>
-              <?php endif; ?>
-
-              <?php if($user->level() >= 2): ?>
-                <span class="label label-warning margin-half margin-left-0">2</span>
-              <?php endif; ?>
-
-              <?php if($user->level() >= 1): ?>
-                <span class="label label-default margin-half margin-left-0">1</span>
-              <?php endif; ?>
-
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="border-bottom"></div>
-
-            <div class="col-sm-5 col-xs-6 text-larger">
-              <strong>
-                <?php echo e(trans('usersmanagement.labelPermissions')); ?>
-
-              </strong>
-            </div>
-
-            <div class="col-sm-7">
-              <?php if($user->canViewUsers()): ?>
-                <span class="label label-primary margin-half margin-left-0"">
-                  <?php echo e(trans('permsandroles.permissionView')); ?>
-
-                </span>
-              <?php endif; ?>
-
-              <?php if($user->canCreateUsers()): ?>
-                <span class="label label-info margin-half margin-left-0"">
-                  <?php echo e(trans('permsandroles.permissionCreate')); ?>
-
-                </span>
-              <?php endif; ?>
-
-              <?php if($user->canEditUsers()): ?>
-                <span class="label label-warning margin-half margin-left-0"">
-                  <?php echo e(trans('permsandroles.permissionEdit')); ?>
-
-                </span>
-              <?php endif; ?>
-
-              <?php if($user->canDeleteUsers()): ?>
-                <span class="label label-danger margin-half margin-left-0"">
-                  <?php echo e(trans('permsandroles.permissionDelete')); ?>
-
-                </span>
-              <?php endif; ?>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="border-bottom"></div>
-
-            <?php if($user->created_at): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelCreatedAt')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->created_at); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->updated_at): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelUpdatedAt')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->updated_at); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->signup_ip_address): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelIpEmail')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->signup_ip_address); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->signup_confirmation_ip_address): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelIpConfirm')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->signup_confirmation_ip_address); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->signup_sm_ip_address): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelIpSocial')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->signup_sm_ip_address); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->admin_ip_address): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelIpAdmin')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->admin_ip_address); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
-            <?php if($user->updated_ip_address): ?>
-
-              <div class="col-sm-5 col-xs-6 text-larger">
-                <strong>
-                  <?php echo e(trans('usersmanagement.labelIpUpdate')); ?>
-
-                </strong>
-              </div>
-
-              <div class="col-sm-7">
-                <?php echo e($user->updated_ip_address); ?>
-
-              </div>
-
-              <div class="clearfix"></div>
-              <div class="border-bottom"></div>
-
-            <?php endif; ?>
-
           </div>
+          </div>
+        <?php endif; ?>
+        <div class="mdl-card__menu">
+
+        <a href="<?php echo e(URL::to('users/' . $user->id . '/edit')); ?>" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+          <i class="material-icons">edit</i>
+        </a>
+
+        <?php echo Form::open(array('url' => 'users/' . $user->id, 'class' => 'inline-block')); ?>
+
+          <?php echo Form::hidden('_method', 'DELETE'); ?>
+
+          <a href="#" class="dialog-button-delete mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            <i class="material-icons">delete</i>
+          </a>
+          <?php echo $__env->make('dialogs.dialog-delete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo Form::close(); ?>
+
 
         </div>
       </div>
-    </div>
   </div>
+</div>
 
-  <?php echo $__env->make('modals.modal-delete', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('footer_scripts'); ?>
 
-  <?php echo $__env->make('scripts.delete-modal-script', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+  <?php echo $__env->make('scripts.google-maps-geocode-and-map', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+  <script type="text/javascript">
+
+    mdl_dialog('.dialog-button-delete','.dialog-delete-close','#dialog_delete');
+
+  </script>
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
