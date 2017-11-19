@@ -15,11 +15,11 @@
         <div class="panel panel-default">
           <div class="panel-heading">
 
-            Create New User
+            Buat User Baru
 
-            <a href="/users" class="btn btn-info btn-xs pull-right">
+            <a href="/users" class="btn btn-success btn-xs pull-right">
               <i class="fa fa-fw fa-mail-reply" aria-hidden="true"></i>
-              Back <span class="hidden-xs">to</span><span class="hidden-xs"> Users</span>
+              Back
             </a>
 
           </div>

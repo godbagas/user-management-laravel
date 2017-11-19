@@ -12,8 +12,8 @@ return [
     */
 
     // CREATE NEW USER FORM
-    'create_user_label_email' => 'User Email',
-    'create_user_ph_email'    => 'User Email',
+    'create_user_label_email' => 'Email Address',
+    'create_user_ph_email'    => 'Email Address',
     'create_user_icon_email'  => 'fa-envelope',
 
     'create_user_label_username' => 'Username',

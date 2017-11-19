@@ -138,3 +138,43 @@ Log Entry Details:
 Log Entry Details:
 ["[object] (App\\Models\\User: {\"id\":5,\"name\":\"godbagas\",\"first_name\":\"God\",\"last_name\":\"Bagas\",\"email\":\"godbagas@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 09:11:55\",\"updated_at\":\"2017-11-18 09:11:55\",\"deleted_at\":null})"]
 []
+[2017-11-19 11:38:16] local.INFO: User Logged Out.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":5,\"name\":\"godbagas\",\"first_name\":\"God\",\"last_name\":\"Bagas\",\"email\":\"godbagas@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 09:11:55\",\"updated_at\":\"2017-11-18 09:11:55\",\"deleted_at\":null})"]
+[]
+[2017-11-19 11:39:33] local.INFO: CheckCurrentUser middlware was used: profile.edit.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":3,\"name\":\"Bagas Dewa\",\"first_name\":\"Bagas\",\"last_name\":\"Dewa\",\"email\":\"bagasdewa07@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\",\"deleted_at\":null,\"profile\":{\"id\":3,\"user_id\":3,\"theme_id\":1,\"location\":null,\"bio\":null,\"twitter_username\":null,\"github_username\":null,\"avatar\":null,\"avatar_status\":0,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\"}})"]
+[]
+[2017-11-19 11:40:11] local.INFO: CheckCurrentUser middlware was used: profile.edit.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":3,\"name\":\"Bagas Dewa\",\"first_name\":\"Bagas\",\"last_name\":\"Dewa\",\"email\":\"bagasdewa07@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\",\"deleted_at\":null,\"profile\":{\"id\":3,\"user_id\":3,\"theme_id\":1,\"location\":null,\"bio\":null,\"twitter_username\":null,\"github_username\":null,\"avatar\":null,\"avatar_status\":0,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\"}})"]
+[]
+[2017-11-19 11:40:35] local.INFO: CheckCurrentUser middlware was used: profile.edit.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":3,\"name\":\"Bagas Dewa\",\"first_name\":\"Bagas\",\"last_name\":\"Dewa\",\"email\":\"bagasdewa07@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\",\"deleted_at\":null,\"profile\":{\"id\":3,\"user_id\":3,\"theme_id\":1,\"location\":null,\"bio\":null,\"twitter_username\":null,\"github_username\":null,\"avatar\":null,\"avatar_status\":0,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\"}})"]
+[]
+[2017-11-19 11:41:01] local.INFO: CheckCurrentUser middlware was used: profile.edit.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":3,\"name\":\"Bagas Dewa\",\"first_name\":\"Bagas\",\"last_name\":\"Dewa\",\"email\":\"bagasdewa07@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\",\"deleted_at\":null,\"profile\":{\"id\":3,\"user_id\":3,\"theme_id\":1,\"location\":null,\"bio\":null,\"twitter_username\":null,\"github_username\":null,\"avatar\":null,\"avatar_status\":0,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\"}})"]
+[]
+[2017-11-19 11:53:15] local.INFO: CheckCurrentUser middlware was used: profile.edit.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":3,\"name\":\"Bagas Dewa\",\"first_name\":\"Bagas\",\"last_name\":\"Dewa\",\"email\":\"bagasdewa07@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\",\"deleted_at\":null,\"profile\":{\"id\":3,\"user_id\":3,\"theme_id\":1,\"location\":null,\"bio\":null,\"twitter_username\":null,\"github_username\":null,\"avatar\":null,\"avatar_status\":0,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\"}})"]
+[]
+[2017-11-19 11:53:20] local.INFO: User Logged Out.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":3,\"name\":\"Bagas Dewa\",\"first_name\":\"Bagas\",\"last_name\":\"Dewa\",\"email\":\"bagasdewa07@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 03:47:12\",\"updated_at\":\"2017-11-18 03:47:12\",\"deleted_at\":null})"]
+[]
+[2017-11-19 15:12:47] local.INFO: User Logged Out.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":5,\"name\":\"godbagas\",\"first_name\":\"God\",\"last_name\":\"Bagas\",\"email\":\"godbagas@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 09:11:55\",\"updated_at\":\"2017-11-18 09:11:55\",\"deleted_at\":null})"]
+[]
+[2017-11-19 15:19:05] local.INFO: CheckCurrentUser middlware was used: profile.edit.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":5,\"name\":\"godbagas\",\"first_name\":\"God\",\"last_name\":\"Bagas\",\"email\":\"godbagas@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 09:11:55\",\"updated_at\":\"2017-11-18 09:11:55\",\"deleted_at\":null,\"profile\":{\"id\":5,\"user_id\":5,\"theme_id\":1,\"location\":null,\"bio\":null,\"twitter_username\":null,\"github_username\":null,\"avatar\":null,\"avatar_status\":0,\"created_at\":\"2017-11-18 09:11:55\",\"updated_at\":\"2017-11-18 09:11:55\"}})"]
+[]
+[2017-11-19 15:21:51] local.INFO: CheckCurrentUser middlware was used: avatar.upload.  
+Log Entry Details:
+["[object] (App\\Models\\User: {\"id\":5,\"name\":\"godbagas\",\"first_name\":\"God\",\"last_name\":\"Bagas\",\"email\":\"godbagas@gmail.com\",\"signup_ip_address\":null,\"signup_confirmation_ip_address\":null,\"signup_sm_ip_address\":null,\"admin_ip_address\":\"0.0.0.0\",\"updated_ip_address\":null,\"deleted_ip_address\":null,\"created_at\":\"2017-11-18 09:11:55\",\"updated_at\":\"2017-11-18 09:11:55\",\"deleted_at\":null})"]
+[]
