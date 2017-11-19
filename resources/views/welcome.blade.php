@@ -85,7 +85,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel<br /><small>User Management</small>
+                    TM Technology<br /><small>User Management</small>
                 </div>
             </div>
         </div>

@@ -56,7 +56,7 @@ return [
     // User flash messages
     'sendResetLink' => 'Send Password Reset Link',
     'resetPassword' => 'Reset Password',
-    'loggedIn'      => 'Anda telah login!',
+    'loggedIn'      => 'You are logged in!',
 
     // email links
     'pleaseActivate'    => 'Please activate your account.',
@@ -71,8 +71,8 @@ return [
     'emailRequired'    => 'Email is required',
     'emailInvalid'     => 'Email is invalid',
     'passwordRequired' => 'Password is required',
-    'PasswordMin'      => 'Password must be atleast 6 characters',
-    'PasswordMax'      => 'Password max length is 20 characters',
+    'PasswordMin'      => 'Password needs to have at least 6 characters',
+    'PasswordMax'      => 'Password maximum length is 20 characters',
     'captchaRequire'   => 'Captcha is required',
     'CaptchaWrong'     => 'Wrong captcha, please try again.',
     'roleRequired'     => 'User role is required.',

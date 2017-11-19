@@ -31,9 +31,8 @@
             {{ trans('auth.loggedIn') }}
         </h2>
         <p>
-            Hanya akun yang sudah diaktivasi yang dapat mengakses halaman Dashboard
+            Akun telah diaktivasi
         </p>
-
         <hr>
 
         <h4>

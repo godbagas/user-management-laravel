@@ -2,8 +2,7 @@
 
 return [
 
-    'app'           => 'Laravel',
-    'app2'          => 'Laravel Auth 2.0',
+    'app'           => 'TM Technology',
     'home'          => 'Home',
     'login'         => 'Login',
     'logout'        => 'Logout',
@@ -19,7 +18,7 @@ return [
 
     'editProfile'    => 'Edit Profile',
     'createProfile'  => 'Create Profile',
-    'adminUserList'  => 'Users Administration',
+    'adminUserList'  => 'Users Management',
     'adminEditUsers' => 'Edit Users',
     'adminNewUser'   => 'Create New User',
 
