@@ -17,11 +17,11 @@
 
         @role('admin', true)
             <span class="pull-right label label-primary" style="margin-top:4px">
-            Admin Access
+            Admin
             </span>
         @else
             <span class="pull-right label label-warning" style="margin-top:4px">
-            User Access
+            User
             </span>
         @endrole
 
@@ -31,20 +31,7 @@
             {{ trans('auth.loggedIn') }}
         </h2>
         <p>
-            <em>Thank you</em> for checking this project out. <strong>Please remember to star it!</strong>
-        </p>
-
-        <p>
-            <iframe src="https://ghbtns.com/github-btn.html?user=jeremykenedy&repo=laravel-auth&type=star&count=true" frameborder="0" scrolling="0" width="170px" height="20px" style="margin: 0px 0 -3px .5em;"></iframe>
-        </p>
-
-        <p>
-            This page route is protected by <code>activated</code> middleware. Only accounts with activated emails are able pass this middleware.
-        </p>
-        <p>
-            <small>
-                Users registered via Social providers are by default activated.
-            </small>
+            Hanya akun yang sudah diaktivasi yang dapat mengakses halaman Dashboard
         </p>
 
         <hr>

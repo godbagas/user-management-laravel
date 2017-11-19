@@ -56,7 +56,7 @@ return [
     // User flash messages
     'sendResetLink' => 'Send Password Reset Link',
     'resetPassword' => 'Reset Password',
-    'loggedIn'      => 'You are logged in!',
+    'loggedIn'      => 'Anda telah login!',
 
     // email links
     'pleaseActivate'    => 'Please activate your account.',
