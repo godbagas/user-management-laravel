@@ -15,7 +15,7 @@ Fitur
 1. Jalankan di Console / Command Line `sudo git clone https://github.com/godbagas/user-management-laravel.git user_management`
 2. Buat database menggunakan MySQL
     * ```mysql -u root -p```,
-    * ```create database laravel_material;```
+    * ```create database user_management;```
     * ```\q```
     Atau buat manual di ```localhost/phpmyadmin```
 3. Lalu pindah ke direktori project menggunakan `cd user_management` lalu jalankan perintah `cp .env.example .env`
