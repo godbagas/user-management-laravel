@@ -15,21 +15,21 @@ class User extends Authenticatable
     use SoftDeletes;
 
     /**
-     * The database table used by the model.
+     * 
      *
      * @var string
      */
     protected $table = 'users';
 
     /**
-     * The attributes that are not mass assignable.
+     *
      *
      * @var array
      */
     protected $guarded = ['id'];
 
     /**
-     * The attributes that are mass assignable.
+     *
      *
      * @var array
      */
@@ -50,7 +50,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     *
      *
      * @var array
      */
@@ -66,17 +66,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Build Social Relationships
      *
-     * @var array
-     */
-    public function social()
-    {
-        return $this->hasMany('App\Models\Social');
-    }
-
-    /**
-     * User Profile Relationships
      *
      * @var array
      */
@@ -84,9 +74,6 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Profile');
     }
-
-
-    // User Profile Setup - SHould move these to a trait or interface...
 
     public function profiles()
     {

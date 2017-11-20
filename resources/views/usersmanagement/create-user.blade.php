@@ -43,7 +43,7 @@
     <div class="mdl-cell mdl-cell mdl-cell--12-col mdl-cell--12-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop mdl-card mdl-shadow--3dp margin-top-0 padding-top-0">
         <div class="mdl-card card-new-user" style="width:100%;" itemscope itemtype="http://schema.org/Person">
 
-        <div class="mdl-card__title mdl-card--expand mdl-color--green mdl-color-text--white">
+        <div class="mdl-card__title mdl-card--expand diagmonds-bg mdl-color-text--white">
           <h2 class="mdl-card__title-text logo-style">Create New User</h2>
         </div>
 
@@ -88,7 +88,7 @@
                     <div class="mdl-cell mdl-cell--4-col-tablet mdl-cell--6-col-desktop">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label margin-bottom-1 {{ $errors->has('location') ? 'is-invalid' :'' }}">
                         {!! Form::text('location', NULL, array('id' => 'location', 'class' => 'mdl-textfield__input' )) !!}
-                        {!! Form::label('location', 'User Location', array('class' => 'mdl-textfield__label')); !!}
+                        {!! Form::label('location', 'Address', array('class' => 'mdl-textfield__label')); !!}
                       <span class="mdl-textfield__error">Please Enter a Valid Location</span>
                     </div>
                   </div>
