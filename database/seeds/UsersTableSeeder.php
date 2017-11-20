@@ -25,15 +25,15 @@ class UsersTableSeeder extends Seeder
         $userRole = Role::whereName('User')->first();
 
         // Seed test admin
-        $seededAdminEmail = 'admin@admin.com';
+        $seededAdminEmail = 'godbagas@gmail.com';
         $user = User::where('email', '=', $seededAdminEmail)->first();
         if ($user === null) {
             $user = User::create(array(
-                'name'              => $faker->userName,
-                'first_name'        => $faker->firstName,
-                'last_name'         => $faker->lastName,
-                'email'             => $seededAdminEmail,
-                'password'          => Hash::make('password'),
+                'name'              => 'godbagas',
+                'first_name'        => 'God',
+                'last_name'         => 'Bagas',
+                'email'             => 'godbagas@gmail.com',
+                'password'          => Hash::make('123456'),
                 'token'             => str_random(64),
                 'activated'         => true,
                 'signup_confirmation_ip_address' => $faker->ipv4,
@@ -50,11 +50,11 @@ class UsersTableSeeder extends Seeder
         $user = User::where('email', '=', 'user@user.com')->first();
         if ($user === null) {
             $user = User::create(array(
-                'name'              => $faker->userName,
-                'first_name'        => $faker->firstName,
-                'last_name'         => $faker->lastName,
-                'email'             => 'user@user.com',
-                'password'          => Hash::make('password'),
+                'name'              => 'theflash',
+                'first_name'        => 'Barry',
+                'last_name'         => 'Allen',
+                'email'             => 'barryallen@gmail.com',
+                'password'          => Hash::make('123456'),
                 'token'             => str_random(64),
                 'activated'         => true,
                 'signup_ip_address' => $faker->ipv4,

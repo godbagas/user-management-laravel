@@ -21,7 +21,7 @@ Fitur
 3. Lalu pindah ke direktori project menggunakan `cd user_management` lalu jalankan perintah `cp .env.example .env`
 4. Edit file `.env` setting nama database username database dan passwordnya
 5. Jalankan `sudo composer install`
-6. Jalankan perintah `sudo chmod -R 755 ../laravel-material-design` untuk mengganti permission
+6. Jalankan perintah `sudo chmod -R 755 ../user_management` untuk mengganti permission
 7. Jalankan perintah `sudo php artisan key:generate`
 8. Jalankan perintah untuk migrate database `sudo php artisan migrate`
 9. Jalankan perintah `sudo composer dump-autoload`
